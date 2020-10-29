@@ -2,6 +2,8 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
@@ -24,10 +26,37 @@ const Tab = createBottomTabNavigator();
 
 const Menu = () => {
   return (
-    <Tab.Navigator>
-      <Tab.Screen name="Profile" component={Profile} />
-      <Tab.Screen name="Schedule" component={Schedule} />
-      <Tab.Screen name="Search" component={Search} />
+    <Tab.Navigator
+      tabBarOptions={{
+        showLabel: false,
+      }}>
+      <Tab.Screen
+        name="Profile"
+        component={Profile}
+        options={{
+          tabBarIcon: ({color}) => (
+            <MaterialIcons name="search" size={34} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Schedule"
+        component={Schedule}
+        options={{
+          tabBarIcon: ({color}) => (
+            <MaterialIcons name="person-outline" size={34} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Search"
+        component={Search}
+        options={{
+          tabBarIcon: ({color}) => (
+            <MaterialCommunityIcons name="calendar" size={34} color={color} />
+          ),
+        }}
+      />
     </Tab.Navigator>
   );
 };
