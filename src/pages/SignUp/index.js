@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {ScrollView} from 'react-native';
+import {ScrollView, Alert} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+
+import api from '../../services/api';
 
 import {
   Container,
@@ -26,8 +28,23 @@ const SignUp = ({navigation}) => {
     navigation.goBack();
   }
 
-  function handleSignUp() {
-    navigation.goBack();
+  async function handleSignUp() {
+    try {
+      const {data} = await api.post('register/user', {
+        name,
+        email,
+        password,
+        cellphone: phone,
+      });
+      Alert.alert('Sucesso', 'Cadastro realizado com sucesso, efetue o login', [
+        {
+          text: 'OK',
+          onPress: () => navigation.goBack(),
+        },
+      ]);
+    } catch (e) {
+      Alert.alert('Ocorreu um erro', `${e}`);
+    }
   }
 
   return (
@@ -84,6 +101,7 @@ const SignUp = ({navigation}) => {
               value={password}
               onChangeText={(text) => setPassword(text)}
               placeholder="Senha"
+              secureTextEntry
             />
           </InputView>
           <InputView>
@@ -92,6 +110,7 @@ const SignUp = ({navigation}) => {
               value={confirmPassword}
               onChangeText={(text) => setConfirmPassword(text)}
               placeholder="Confirmar Senha"
+              secureTextEntry
             />
           </InputView>
           <ButtonView onPress={() => handleSignUp()}>

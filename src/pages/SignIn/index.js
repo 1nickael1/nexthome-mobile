@@ -1,7 +1,8 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {TextInput, ScrollView} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {signin, getToken} from '../../services/auth';
 
 import {
   Container1,
@@ -18,12 +19,27 @@ const SignIn = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  useEffect(() => {
+    verifyToken();
+  }, []);
+
+  async function verifyToken() {
+    const response = await getToken();
+    if (response) {
+      navigation.navigate('Menu');
+    }
+  }
+
   function handleNavigateToSignUp() {
     navigation.navigate('SignUp');
   }
 
-  function handleSignIn() {
-    navigation.navigate('Menu');
+  async function handleSignIn() {
+    // navigation.navigate('Menu');
+    const response = await signin({email, password});
+    if (response) {
+      navigation.navigate('Menu');
+    }
   }
 
   return (
@@ -53,6 +69,7 @@ const SignIn = ({navigation}) => {
             <TextInput
               value={password}
               onChangeText={(text) => setPassword(text)}
+              secureTextEntry
               placeholder="Senha"
               placeholderTextColor="#666"
               style={{width: '90%', marginLeft: 5}}

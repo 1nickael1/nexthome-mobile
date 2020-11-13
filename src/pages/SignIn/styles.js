@@ -5,7 +5,7 @@ import {
 } from 'react-native-responsive-screen';
 
 export const Container1 = styled.View`
-  background-color: #00b6e3;
+  background-color: #26d0ce;
   height: ${hp(50)}px;
   padding-top: ${hp(10)}px;
   padding-left: ${wp(5)}px;
@@ -25,7 +25,7 @@ export const Container2 = styled.View`
 `;
 
 export const ButtonView = styled.TouchableOpacity`
-  background-color: #00b6e3;
+  background-color: #26d0ce;
   height: ${hp(5)}px;
   justify-content: center;
   align-items: center;
@@ -49,7 +49,7 @@ export const SignUpView = styled.TouchableOpacity`
   margin-bottom: ${hp(3)}px;
   border-radius: ${wp(2)}px;
   border-width: ${wp(0.3)}px;
-  border-color: #00b6e3;
+  border-color: #26d0ce;
 `;
 
 export const TextSignUp = styled.Text`

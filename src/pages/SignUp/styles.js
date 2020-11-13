@@ -9,7 +9,7 @@ export const Container = styled.View`
 `;
 
 export const HeaderView = styled.View`
-  background-color: #00b6e3;
+  background-color: #26d0ce;
   height: ${hp(25)}px;
   padding-top: ${hp(5)}px;
   padding-left: ${wp(5)}px;
@@ -49,7 +49,7 @@ export const InputView = styled.View`
 `;
 
 export const ButtonView = styled.TouchableOpacity`
-  background-color: #00b6e3;
+  background-color: #26d0ce;
   height: ${hp(5)}px;
   justify-content: center;
   align-items: center;
