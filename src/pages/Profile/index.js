@@ -40,7 +40,7 @@ const Profile = ({navigation}) => {
       </IconButton>
       <UserDescriptionBackground>
         <IconBackground>
-          <Ionicons name="person-circle" size={100} color="#000" />
+          <Ionicons name="person-circle" size={90} color="#000" />
         </IconBackground>
         <UserDescriptionText>{user.name}</UserDescriptionText>
         <UserDescriptionText>{user.email}</UserDescriptionText>

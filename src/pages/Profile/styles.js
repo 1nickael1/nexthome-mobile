@@ -11,8 +11,8 @@ export const Container = styled.View`
 
 export const IconBackground = styled.View`
   background-color: #fff;
-  width: ${wp(23)}px;
-  height: ${hp(12)}px;
+  width: ${wp(21)}px;
+  height: ${wp(22)}px;
   border-radius: ${wp(25)}px;
   justify-content: center;
   align-items: center;

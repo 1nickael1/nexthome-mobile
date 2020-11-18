@@ -2,6 +2,7 @@ import React from 'react';
 
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -9,7 +10,9 @@ import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import Profile from './pages/Profile';
 import Configs from './pages/Profile/Configs';
-import Schedule from './pages/Schedule';
+// import Schedule from './pages/Schedule';
+import Visit from './pages/Schedule/pages/Visit';
+import Requests from './pages/Schedule/pages/Requests';
 import Search from './pages/Search';
 import Detail from './pages/Search/pages/Details';
 import Scheduling from './pages/Search/pages/scheduling';
@@ -50,6 +53,33 @@ const DetailsPages = () => {
         }}
       />
     </Stack.Navigator>
+  );
+};
+
+const TopTab = createMaterialTopTabNavigator();
+
+const Schedule = () => {
+  return (
+    <TopTab.Navigator
+      tabBarOptions={{
+        indicatorStyle: {backgroundColor: '#26d0ce'},
+        pressColor: '#26d0ce',
+      }}>
+      <TopTab.Screen
+        name="Visit"
+        component={Visit}
+        options={{
+          title: 'Visitar',
+        }}
+      />
+      <TopTab.Screen
+        name="Requests"
+        component={Requests}
+        options={{
+          title: 'Solicitações',
+        }}
+      />
+    </TopTab.Navigator>
   );
 };
 

@@ -45,8 +45,16 @@ const Search = ({navigation}) => {
   const FlatItem = ({price, address, to_sell, id, item, image}) => (
     <CardView onPress={() => navigateToDetails({id, item, image})}>
       <CardPhotoView />
-      {/* {image.lenght > 0 ??
-        image.map((e) => <CardPhotoView source={{uri: e.url}} />)} */}
+      {/* {image?.url ? (
+        <CardPhotoView source={{uri: image?.url}} />
+      ) : (
+        <CardPhotoView style={{backgroundColor: '#000'}} />
+      )} */}
+      {/* {image?.url ? (
+        <Image source={{uri: image.url}} style={{height: 100, width: 100}} />
+      ) : (
+        <></>
+      )} */}
       <CardTextView>
         <PriceText>R${price}</PriceText>
         <CardTextDescription>{address}</CardTextDescription>
@@ -64,7 +72,7 @@ const Search = ({navigation}) => {
       to_sell={item.to_sell}
       id={item.id}
       item={item}
-      image={item.house_picture}
+      image={item.house_picture[0]}
     />
   );
 

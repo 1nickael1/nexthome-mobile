@@ -25,9 +25,7 @@ const Scheduling = ({route, navigation}) => {
     const Year = new Date().getFullYear();
     const Month = new Date().getMonth() + 1;
     const Day = new Date().getDate();
-    const {data} = await api.get(
-      `available/days/${houseId}/${Year}-${Month}-${Day}/20`,
-    );
+    const {data} = await api.get(`available/days/${houseId}/20`);
     setOptions(data.dias);
   }
 
@@ -35,7 +33,7 @@ const Scheduling = ({route, navigation}) => {
     setLoading(true);
     const token = await getToken();
     try {
-      const {data} = await api.post(`register/visit/${token}/${houseId}`, {
+      const {data} = await api.post(`register/visit/${houseId}/${token}`, {
         day_hour_visit: optionSelected,
         is_confirmed: false,
       });
@@ -64,7 +62,7 @@ const Scheduling = ({route, navigation}) => {
           setOptionSelected(itemValue);
         }}>
         {options.map((e) => (
-          <Picker.Item label={e} value={e} />
+          <Picker.Item key={e} label={e} value={e} />
         ))}
       </Picker>
       <ButtonView disabled={loading} onPress={() => confirmVisit()}>
