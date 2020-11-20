@@ -1,6 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useEffect, useState} from 'react';
 import {View, Text, FlatList, ActivityIndicator, Image} from 'react-native';
+import {useIsFocused} from '@react-navigation/native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import api from '../../services/api';
@@ -24,11 +25,14 @@ const Search = ({navigation}) => {
   const [houses, setHouses] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const isFocused = useIsFocused();
+
   useEffect(() => {
     getHouses();
-  }, []);
+  }, [isFocused]);
 
   async function getHouses() {
+    setLoading(true);
     const {data} = await api.get('houses');
     setHouses(data);
     setLoading(false);

@@ -26,7 +26,7 @@ export const VisitView = styled.View`
 
 export const VisitButton = styled.TouchableOpacity`
   background-color: #70d9d7;
-  width: ${wp(80)}px;
+  width: ${wp(70)}px;
   height: ${hp(8)}px;
   border-radius: ${wp(5)}px;
   justify-content: center;

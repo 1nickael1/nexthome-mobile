@@ -10,9 +10,10 @@ import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import Profile from './pages/Profile';
 import Configs from './pages/Profile/Configs';
-// import Schedule from './pages/Schedule';
+import Announce from './pages/Profile/Announce';
 import Visit from './pages/Schedule/pages/Visit';
 import Requests from './pages/Schedule/pages/Requests';
+import Solicitations from './pages/Schedule/pages/Requests/pages/Solicitations';
 import Search from './pages/Search';
 import Detail from './pages/Search/pages/Details';
 import Scheduling from './pages/Search/pages/scheduling';
@@ -58,6 +59,23 @@ const DetailsPages = () => {
 
 const TopTab = createMaterialTopTabNavigator();
 
+const RequestsPage = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="RequestsIndex"
+        component={Requests}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="SolicitationsIndex"
+        component={Solicitations}
+        options={{headerTitle: 'Clientes'}}
+      />
+    </Stack.Navigator>
+  );
+};
+
 const Schedule = () => {
   return (
     <TopTab.Navigator
@@ -74,7 +92,7 @@ const Schedule = () => {
       />
       <TopTab.Screen
         name="Requests"
-        component={Requests}
+        component={RequestsPage}
         options={{
           title: 'Solicitações',
         }}
@@ -94,7 +112,12 @@ const ProfilePage = () => {
       <Stack.Screen
         name="Configs"
         component={Configs}
-        options={{headerShown: true, headerTitle: 'Configurações'}}
+        options={{headerTitle: 'Configurações'}}
+      />
+      <Stack.Screen
+        name="Announce"
+        component={Announce}
+        options={{headerTitle: 'Anuncio'}}
       />
     </Stack.Navigator>
   );

@@ -33,6 +33,10 @@ const Profile = ({navigation}) => {
     navigation.navigate('Configs');
   }
 
+  const navigateToAnnounce = () => {
+    navigation.navigate('Announce');
+  };
+
   return (
     <Container>
       <IconButton onPress={() => navigateToConfig()}>
@@ -51,7 +55,7 @@ const Profile = ({navigation}) => {
         <WithoutFav>Você ainda não favoritou</WithoutFav>
         <Titles>Anúncios</Titles>
         <WithoutFav>Você possui um imóvel parado? Então...</WithoutFav>
-        <ButtonView>
+        <ButtonView onPress={navigateToAnnounce}>
           <ButtonText>Anuncie!</ButtonText>
         </ButtonView>
       </InfoView>
