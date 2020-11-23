@@ -4,9 +4,14 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 
-export const Container1 = styled.View`
+export const Container = styled.KeyboardAvoidingView`
+  flex            : 1;
+  background-color: #fff;
+`;
+
+export const HeaderContainer = styled.View`
+  flex            : 1;
   background-color: #26d0ce;
-  height          : ${hp(46)}px;
   padding-left    : ${wp(5)}px;
   justify-content : center;
 `;
@@ -18,17 +23,14 @@ export const Header = styled.Text`
 `;
 
 export const Container2 = styled.View`
-  background-color: #fff;
-  height          : ${hp(57)}px;
-  padding-top     : ${wp(8)}px;
-  padding-left    : ${wp(5)}px;
-  padding-right   : ${wp(5)}px;
+  flex              : 1;
+  background-color  : #fff;
+  padding-horizontal: ${wp(5)}px;
 `;
 
 export const Container3 = styled.View`
-  background-color: #fff;
-  margin-top      : ${hp(4)}px;
-  margin-bottom   : ${hp(6)}px;
+  flex: 1.5;
+  justify-content: center;
 `;
 
 export const InputView = styled.View`
@@ -48,13 +50,16 @@ export const TextInput = styled.TextInput.attrs({
   font-size   : ${wp(3.5)}px;
 `;
 
+export const ButtonContainer = styled.View`
+  flex: 1;
+  justify-content: center;
+`;
+
 export const ButtonView = styled.TouchableOpacity`
   background-color: #26d0ce;
   height          : ${hp(7)}px;
   justify-content : center;
   align-items     : center;
-  margin-top      : ${hp(10)}px;
-  margin-bottom   : ${hp(1)}px;
   border-radius   : ${wp(1.5)}px;
 `;
 
@@ -70,12 +75,18 @@ export const SignUpView = styled.TouchableOpacity`
   justify-content : center;
   align-items     : center;
   margin-top      : ${hp(1)}px;
-  margin-bottom   : ${hp(2)}px;
 `;
 
 export const TextSignUp = styled.Text`
   font-size   : ${wp(4)}px;
   color       : #666;
+  font-weight : 100;
+  font-family : 'Nunito-Regular';
+`;
+
+export const TextSignUpBlue = styled.Text`
+  font-size   : ${wp(4)}px;
+  color       : #1C9E9C;
   font-weight : 100;
   font-family : 'Nunito-Regular';
 `;

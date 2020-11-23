@@ -5,16 +5,19 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import {signin, getToken} from '../../services/auth';
 
 import {
-  Container1,
+  Container,
+  HeaderContainer,
   Container2,
   Container3,
   Header,
-  ButtonView,
-  TextButton,
   SignUpView,
   TextSignUp,
   InputView,
   TextInput,
+  ButtonContainer,
+  ButtonView,
+  TextButton,
+  TextSignUpBlue,
 } from './styles';
 
 const SignIn = ({navigation}) => {
@@ -45,12 +48,12 @@ const SignIn = ({navigation}) => {
   }
 
   return (
-    <>
-      <ScrollView>
-        <Container1>
+    <Container behavior="height">
+      <>
+        <HeaderContainer>
           <Header>Seja</Header>
           <Header>Bem-Vindo!</Header>
-        </Container1>
+        </HeaderContainer>
 
         <Container2>
 
@@ -75,17 +78,21 @@ const SignIn = ({navigation}) => {
             </InputView>
           </Container3>
 
-          <ButtonView onPress={() => handleSignIn()}>
-            <TextButton>Login</TextButton>
-          </ButtonView>
-          
-          <SignUpView onPress={() => handleNavigateToSignUp()}>
-            <TextSignUp>É novo no app? Cadastre-se</TextSignUp>
-          </SignUpView>
+          <ButtonContainer>
+            <ButtonView onPress={() => handleSignIn()}>
+              <TextButton>Login</TextButton>
+            </ButtonView>
+            
+            <SignUpView onPress={() => handleNavigateToSignUp()}>
+              <TextSignUp>É novo no app?
+                <TextSignUpBlue> Cadastre-se</TextSignUpBlue>
+              </TextSignUp>
+            </SignUpView>
+          </ButtonContainer>
           
         </Container2>
-      </ScrollView>
-    </>
+      </>
+    </ Container>
   );
 };
 
