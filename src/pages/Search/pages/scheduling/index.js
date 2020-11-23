@@ -55,6 +55,7 @@ const Scheduling = ({route, navigation}) => {
   return (
     <Container>
       <Text>Selecione uma data e horario</Text>
+      
       <Picker
         selectedValue={optionSelected}
         style={{height: hp(10), width: wp(60)}}
@@ -65,6 +66,7 @@ const Scheduling = ({route, navigation}) => {
           <Picker.Item key={e} label={e} value={e} />
         ))}
       </Picker>
+      
       <ButtonView disabled={loading} onPress={() => confirmVisit()}>
         {loading ? (
           <ActivityIndicator size="large" color="#26d0ce" />
@@ -72,6 +74,7 @@ const Scheduling = ({route, navigation}) => {
           <ButtonText>Solicitar Agendamento</ButtonText>
         )}
       </ButtonView>
+    
     </Container>
   );
 };

@@ -4,21 +4,25 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import api from '../../../../services/api';
 
 import {
+  Container1,
   PhotoView,
-  Container,
+  Container2,
   ContentView,
   ContentText,
   PriceText,
   ButtonView,
   ButtonText,
   SalesmanView,
+  SalesmanInfoView,
   SalesmanText,
+  SalesmanDescription,
   MoreDetails,
   TitleDetails,
   DescriptionView,
   LineView,
-  DescriptionDetailsText,
   DescriptionDetailsView,
+  DescriptionDetailsText,
+  DescriptionDetailsValueText,
 } from './styles';
 
 const Details = ({route, navigation}) => {
@@ -54,8 +58,10 @@ const Details = ({route, navigation}) => {
   return (
     <>
       <ScrollView style={{backgroundColor: '#FFF'}}>
+        <Container1 />
         <PhotoView />
-        <Container>
+
+        <Container2>
           <ContentView>
             {loading ? (
               <View style={{justifyContent: 'center', alignItems: 'center'}}>
@@ -64,46 +70,47 @@ const Details = ({route, navigation}) => {
             ) : (
               <>
                 <DescriptionView>
-                  <PriceText>{item.price}</PriceText>
+                  <PriceText>R$ {item.price}</PriceText>
 
-                  <ContentText>{item.description}</ContentText>
                   <ContentText>{item.address}</ContentText>
                 </DescriptionView>
+                
                 <SalesmanView>
-                  <Ionicons name="person-circle" size={60} />
-                  <View>
-                    <SalesmanText>{owner.name}</SalesmanText>
-                    <SalesmanText>{owner.email}</SalesmanText>
-                  </View>
+                  <SalesmanInfoView>
+                    <Ionicons name="person-circle" size={85} />
+                    <View>
+                      <SalesmanText style={{fontFamily: 'Nunito-Light'}}>Vendedor</SalesmanText>
+                      <SalesmanText style={{fontFamily: 'Nunito-Regular'}}>{owner.name}</SalesmanText>
+                      <SalesmanText style={{fontFamily: 'Nunito-ExtraLightItalic'}}>{owner.email}</SalesmanText>
+                    </View>
+                  </SalesmanInfoView>
+                  <SalesmanDescription>"{item.description}"</SalesmanDescription>
                 </SalesmanView>
+                
                 <MoreDetails>
                   <LineView>
                     <TitleDetails>Detalhes</TitleDetails>
                   </LineView>
+                  
                   <DescriptionDetailsView>
                     <View>
                       <DescriptionDetailsText>Quartos</DescriptionDetailsText>
-                      <DescriptionDetailsText>
-                        {item.number_bedroom}
-                      </DescriptionDetailsText>
+                      <DescriptionDetailsValueText>{item.number_bedroom}</DescriptionDetailsValueText>
                     </View>
+                    
                     <View>
                       <DescriptionDetailsText>Banheiros</DescriptionDetailsText>
-                      <DescriptionDetailsText>
-                        {item.number_bath}
-                      </DescriptionDetailsText>
+                      <DescriptionDetailsValueText>{item.number_bath}</DescriptionDetailsValueText>
                     </View>
                   </DescriptionDetailsView>
+                  
                   <DescriptionDetailsView>
                     <View>
-                      <DescriptionDetailsText>
-                        Metros Quadrados
-                      </DescriptionDetailsText>
-                      <DescriptionDetailsText>
-                        {item.land_size}
-                      </DescriptionDetailsText>
+                      <DescriptionDetailsText>Área (m²)</DescriptionDetailsText>
+                      <DescriptionDetailsValueText>{item.land_size}</DescriptionDetailsValueText>
                     </View>
                   </DescriptionDetailsView>
+
                 </MoreDetails>
                 {hour ? (
                   <>
@@ -117,7 +124,7 @@ const Details = ({route, navigation}) => {
               </>
             )}
           </ContentView>
-        </Container>
+        </Container2>
       </ScrollView>
     </>
   );
