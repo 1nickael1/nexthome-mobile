@@ -1,18 +1,20 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState, useEffect} from 'react';
-import {TextInput, ScrollView} from 'react-native';
+import {ScrollView} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {signin, getToken} from '../../services/auth';
 
 import {
   Container1,
   Container2,
+  Container3,
   Header,
   ButtonView,
   TextButton,
   SignUpView,
   TextSignUp,
   InputView,
+  TextInput,
 } from './styles';
 
 const SignIn = ({navigation}) => {
@@ -49,38 +51,38 @@ const SignIn = ({navigation}) => {
           <Header>Seja</Header>
           <Header>Bem-Vindo!</Header>
         </Container1>
+
         <Container2>
-          <InputView>
-            <MaterialCommunityIcons
-              name="email-outline"
-              color="#666"
-              size={24}
-            />
-            <TextInput
-              value={email}
-              onChangeText={(text) => setEmail(text)}
-              placeholder="E-mail"
-              placeholderTextColor="#666"
-              style={{width: '90%', marginLeft: 5}}
-            />
-          </InputView>
-          <InputView>
-            <MaterialCommunityIcons name="key-outline" color="#666" size={24} />
-            <TextInput
-              value={password}
-              onChangeText={(text) => setPassword(text)}
-              secureTextEntry
-              placeholder="Senha"
-              placeholderTextColor="#666"
-              style={{width: '90%', marginLeft: 5}}
-            />
-          </InputView>
+
+          <Container3>
+            <InputView>
+              <MaterialCommunityIcons name="email-outline" color="#666" size={24} />
+              <TextInput
+                value={email}
+                onChangeText={(text) => setEmail(text)}
+                placeholder="E-mail"
+              />
+            </InputView>
+
+            <InputView>
+              <MaterialCommunityIcons name="key-outline" color="#666" size={24} />
+              <TextInput
+                value={password}
+                onChangeText={(text) => setPassword(text)}
+                secureTextEntry
+                placeholder="Senha"
+              />
+            </InputView>
+          </Container3>
+
           <ButtonView onPress={() => handleSignIn()}>
             <TextButton>Login</TextButton>
           </ButtonView>
+          
           <SignUpView onPress={() => handleNavigateToSignUp()}>
             <TextSignUp>É novo no app? Cadastre-se</TextSignUp>
           </SignUpView>
+          
         </Container2>
       </ScrollView>
     </>

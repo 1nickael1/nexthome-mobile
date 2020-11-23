@@ -117,7 +117,7 @@ const ProfilePage = () => {
       <Stack.Screen
         name="Announce"
         component={Announce}
-        options={{headerTitle: 'Anuncio'}}
+        options={{headerTitle: 'Anúncio'}}
       />
     </Stack.Navigator>
   );

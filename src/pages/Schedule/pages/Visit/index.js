@@ -4,7 +4,10 @@ import {useIsFocused} from '@react-navigation/native';
 import api from '../../../../services/api';
 import {getToken} from '../../../../services/auth';
 
-import {Container, Content, VisitView, VisitButton} from './styles';
+import {
+  Container, Content, VisitView, 
+  VisitButton, VisitText, VisitButtonText
+} from './styles';
 
 const Visit = () => {
   const [visits, setVisits] = useState([]);
@@ -28,20 +31,18 @@ const Visit = () => {
           {visits.length > 1 ? (
             visits.map((e) => (
               <VisitView key={e.id}>
-                <View>
-                  <Text>
-                    {new Date(e.day_hour_visit).getDate()}/
-                    {new Date(e.day_hour_visit).getMonth() + 1}
-                  </Text>
-                  <Text>
-                    {new Date(e.day_hour_visit).getUTCHours()}:
-                    {new Date(e.day_hour_visit).getMinutes() > 9
-                      ? new Date(e.day_hour_visit).getMinutes()
-                      : `${new Date(e.day_hour_visit).getMinutes()}0`}
-                  </Text>
-                </View>
+                <VisitText>
+                  {new Date(e.day_hour_visit).getDate()}/
+                  {new Date(e.day_hour_visit).getMonth() + 1}
+                  {"\n"}
+                  {new Date(e.day_hour_visit).getUTCHours()}:
+                  {new Date(e.day_hour_visit).getMinutes() > 9
+                    ? new Date(e.day_hour_visit).getMinutes()
+                    : `${new Date(e.day_hour_visit).getMinutes()}0`}
+                </VisitText>
+                
                 <VisitButton>
-                  <Text>{e.house?.address}</Text>
+                  <VisitButtonText>{e.house?.address}</VisitButtonText>
                 </VisitButton>
               </VisitView>
             ))

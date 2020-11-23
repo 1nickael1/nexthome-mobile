@@ -15,6 +15,7 @@ import {
   ButtonText,
   ButtonView,
   IconButton,
+  LineView,
 } from './styles';
 
 const Profile = ({navigation}) => {
@@ -42,23 +43,33 @@ const Profile = ({navigation}) => {
       <IconButton onPress={() => navigateToConfig()}>
         <Ionicons name="settings-outline" size={35} color="#26d0ce" />
       </IconButton>
+      
       <UserDescriptionBackground>
         <IconBackground>
-          <Ionicons name="person-circle" size={90} color="#000" />
+          <Ionicons name="person-circle" size={130} color="#000" />
         </IconBackground>
         <UserDescriptionText>{user.name}</UserDescriptionText>
         <UserDescriptionText>{user.email}</UserDescriptionText>
         <UserDescriptionText>{user.cellphone}</UserDescriptionText>
       </UserDescriptionBackground>
+      
       <InfoView>
-        <Titles>Favoritos</Titles>
+        <LineView>
+          <Titles>Favoritos</Titles>
+        </LineView>
         <WithoutFav>Você ainda não favoritou</WithoutFav>
-        <Titles>Anúncios</Titles>
+        
+        <LineView>
+          <Titles>Anúncios</Titles>
+        </LineView>
+        
         <WithoutFav>Você possui um imóvel parado? Então...</WithoutFav>
+        
         <ButtonView onPress={navigateToAnnounce}>
           <ButtonText>Anuncie!</ButtonText>
         </ButtonView>
       </InfoView>
+    
     </Container>
   );
 };
