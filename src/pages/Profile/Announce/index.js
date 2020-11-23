@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
-import {View, TextInput, ScrollView, Text} from 'react-native';
+import {View, TextInput, ScrollView, Alert} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
+import api from '../../../services/api';
+import {getToken} from '../../../services/auth';
 
 import {
   Container,
@@ -15,7 +17,7 @@ import {
   TextCancelButton,
 } from './styles';
 
-const Announce = () => {
+const Announce = ({navigation}) => {
   const [price, setPrice] = useState('');
   const [to_sell, setTo_sell] = useState(true);
   const [address, setAddress] = useState('');
@@ -24,13 +26,52 @@ const Announce = () => {
   const [number_bedroom, setNumber_bedroom] = useState('');
   const [initial_hour, setInitial_hour] = useState('');
   const [final_hour, setFinal_hour] = useState('');
+  const [land_size, setLand_size] = useState('');
+
+  async function createHouse() {
+    const token = await getToken();
+    api
+      .post(`register/house/${token}`, {
+        land_size,
+        price,
+        address,
+        description,
+        number_bedroom,
+        number_bath,
+        to_sell,
+        initial_hour,
+        final_hour,
+        day_week: 3,
+      })
+      .then((e) =>
+        Alert.alert('Sucesso', 'Casa cadastrada com sucesso', [
+          {text: 'OK', onPress: () => navigation.goBack()},
+        ]),
+      )
+      .catch((e) => Alert.alert('Ocorreu um erro', `${e}`));
+  }
 
   return (
     <Container>
       <ScrollView>
         <Content>
           <TitleView>
+            <Title>Metros quadrados</Title>
+            <TextInput
+              placeholder="EX: 100m2"
+              style={{
+                borderBottomColor: '#d3d3d3',
+                borderBottomWidth: 1,
+                alignSelf: 'center',
+                width: 200,
+              }}
+              onChangeText={(text) => setLand_size(text)}
+              value={land_size}
+            />
+          </TitleView>
+          <TitleView>
             <Title>Preço</Title>
+
             <TextInput
               placeholder="R$"
               style={{
@@ -142,10 +183,10 @@ const Announce = () => {
               />
             </HourView>
           </TitleView>
-          <ButtonView>
+          <ButtonView onPress={() => createHouse()}>
             <TextButton>Confirmar</TextButton>
           </ButtonView>
-          <ButtonCancelView>
+          <ButtonCancelView onPress={() => navigation.goBack()}>
             <TextCancelButton>Cancelar</TextCancelButton>
           </ButtonCancelView>
         </Content>
