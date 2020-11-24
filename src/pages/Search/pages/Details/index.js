@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View, ActivityIndicator, ScrollView} from 'react-native';
+import {View, ActivityIndicator, ScrollView, Image} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import api from '../../../../services/api';
 
@@ -26,7 +26,7 @@ import {
 } from './styles';
 
 const Details = ({route, navigation}) => {
-  const {id, item} = route.params;
+  const {id, item, image} = route.params;
 
   const [hour, sethour] = useState();
   const [loading, setLoading] = useState(true);
@@ -59,7 +59,15 @@ const Details = ({route, navigation}) => {
     <>
       <ScrollView style={{backgroundColor: '#FFF'}}>
         <Container1 />
-        <PhotoView />
+        {image !== undefined ? (
+          <Image
+            source={{uri: `${image.url}`}}
+            style={{height: 200, width: '100%'}}
+            resizeMode={'contain'}
+          />
+        ) : (
+          <PhotoView />
+        )}
 
         <Container2>
           <ContentView>
@@ -74,43 +82,57 @@ const Details = ({route, navigation}) => {
 
                   <ContentText>{item.address}</ContentText>
                 </DescriptionView>
-                
+
                 <SalesmanView>
                   <SalesmanInfoView>
                     <Ionicons name="person-circle" size={85} />
                     <View>
-                      <SalesmanText style={{fontFamily: 'Nunito-Light'}}>Vendedor</SalesmanText>
-                      <SalesmanText style={{fontFamily: 'Nunito-Regular'}}>{owner.name}</SalesmanText>
-                      <SalesmanText style={{fontFamily: 'Nunito-ExtraLightItalic'}}>{owner.email}</SalesmanText>
+                      <SalesmanText style={{fontFamily: 'Nunito-Light'}}>
+                        Vendedor
+                      </SalesmanText>
+                      <SalesmanText style={{fontFamily: 'Nunito-Regular'}}>
+                        {owner.name}
+                      </SalesmanText>
+                      <SalesmanText
+                        style={{fontFamily: 'Nunito-ExtraLightItalic'}}>
+                        {owner.email}
+                      </SalesmanText>
                     </View>
                   </SalesmanInfoView>
-                  <SalesmanDescription>"{item.description}"</SalesmanDescription>
+                  <SalesmanDescription>
+                    "{item.description}"
+                  </SalesmanDescription>
                 </SalesmanView>
-                
+
                 <MoreDetails>
                   <LineView>
                     <TitleDetails>Detalhes</TitleDetails>
                   </LineView>
-                  
+
                   <DescriptionDetailsView>
                     <View>
                       <DescriptionDetailsText>Quartos</DescriptionDetailsText>
-                      <DescriptionDetailsValueText>{item.number_bedroom}</DescriptionDetailsValueText>
+                      <DescriptionDetailsValueText>
+                        {item.number_bedroom}
+                      </DescriptionDetailsValueText>
                     </View>
-                    
+
                     <View>
                       <DescriptionDetailsText>Banheiros</DescriptionDetailsText>
-                      <DescriptionDetailsValueText>{item.number_bath}</DescriptionDetailsValueText>
-                    </View>
-                  </DescriptionDetailsView>
-                  
-                  <DescriptionDetailsView>
-                    <View>
-                      <DescriptionDetailsText>Área (m²)</DescriptionDetailsText>
-                      <DescriptionDetailsValueText>{item.land_size}</DescriptionDetailsValueText>
+                      <DescriptionDetailsValueText>
+                        {item.number_bath}
+                      </DescriptionDetailsValueText>
                     </View>
                   </DescriptionDetailsView>
 
+                  <DescriptionDetailsView>
+                    <View>
+                      <DescriptionDetailsText>Área (m²)</DescriptionDetailsText>
+                      <DescriptionDetailsValueText>
+                        {item.land_size}
+                      </DescriptionDetailsValueText>
+                    </View>
+                  </DescriptionDetailsView>
                 </MoreDetails>
                 {hour ? (
                   <>
