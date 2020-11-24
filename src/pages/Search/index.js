@@ -41,24 +41,25 @@ const Search = ({navigation}) => {
   function navigateToDetails({id, item, image}) {
     navigation.navigate('DetailIndex', {
       screen: 'Detail',
-      params: {id, item},
+      params: {id, item, image},
     });
-    // console.log(image[0].url);
+  }
+
+  function navigateToFilter() {
+    navigation.navigate('Filter');
   }
 
   const FlatItem = ({price, address, to_sell, id, item, image}) => (
     <CardView onPress={() => navigateToDetails({id, item, image})}>
-      <CardPhotoView />
-      {/* {image?.url ? (
-        <CardPhotoView source={{uri: image?.url}} />
+      {image !== undefined ? (
+        <Image
+          source={{uri: `${image.url}`}}
+          style={{height: 200, width: '100%'}}
+          resizeMode={'contain'}
+        />
       ) : (
-        <CardPhotoView style={{backgroundColor: '#000'}} />
-      )} */}
-      {/* {image?.url ? (
-        <Image source={{uri: image.url}} style={{height: 100, width: 100}} />
-      ) : (
-        <></>
-      )} */}
+        <CardPhotoView />
+      )}
       <CardTextView>
         <PriceText>R${price}</PriceText>
         <CardTextDescription>{address}</CardTextDescription>
@@ -92,7 +93,7 @@ const Search = ({navigation}) => {
             </SearchButton>
           </SearchView>
             
-          <SearchButton>
+          <SearchButton onPress={() => navigateToFilter()}>
             <OptionsView>
               <Ionicons name="options-outline" size={34} color="#666" />
             </OptionsView>
