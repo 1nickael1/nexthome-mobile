@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View, ActivityIndicator, ScrollView} from 'react-native';
+import {View, ActivityIndicator, ScrollView, Image} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import api from '../../../../services/api';
 
@@ -22,7 +22,7 @@ import {
 } from './styles';
 
 const Details = ({route, navigation}) => {
-  const {id, item} = route.params;
+  const {id, item, image} = route.params;
 
   const [hour, sethour] = useState();
   const [loading, setLoading] = useState(true);
@@ -54,7 +54,16 @@ const Details = ({route, navigation}) => {
   return (
     <>
       <ScrollView style={{backgroundColor: '#FFF'}}>
-        <PhotoView />
+        {image !== undefined ? (
+          <Image
+            source={{uri: `${image.url}`}}
+            style={{height: 200, width: '100%'}}
+            resizeMode={'contain'}
+          />
+        ) : (
+          <PhotoView />
+        )}
+
         <Container>
           <ContentView>
             {loading ? (

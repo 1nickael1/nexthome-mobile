@@ -11,11 +11,14 @@ import SignUp from './pages/SignUp';
 import Profile from './pages/Profile';
 import Configs from './pages/Profile/Configs';
 import Announce from './pages/Profile/Announce';
+import AnnounceEdit from './pages/Profile/AnnounceEdit';
 import Visit from './pages/Schedule/pages/Visit';
 import Requests from './pages/Schedule/pages/Requests';
 import Solicitations from './pages/Schedule/pages/Requests/pages/Solicitations';
+import SolicitationsDetails from './pages/Schedule/pages/Requests/pages/Solicitations/SolicitationsDetails';
 import Search from './pages/Search';
 import Detail from './pages/Search/pages/Details';
+import Filter from './pages/Search/pages/Filter';
 import Scheduling from './pages/Search/pages/scheduling';
 
 const Stack = createStackNavigator();
@@ -34,6 +37,7 @@ const SearchPage = () => {
     <Stack.Navigator headerMode="none">
       <Stack.Screen name="SearchIndex" component={Search} />
       <Stack.Screen name="DetailIndex" component={DetailsPages} />
+      <Stack.Screen name="Filter" component={Filter} />
     </Stack.Navigator>
   );
 };
@@ -71,6 +75,11 @@ const RequestsPage = () => {
         name="SolicitationsIndex"
         component={Solicitations}
         options={{headerTitle: 'Clientes'}}
+      />
+      <Stack.Screen
+        name="SolicitationsDetails"
+        component={SolicitationsDetails}
+        options={{headerTitle: 'Detalhes da solicitação'}}
       />
     </Stack.Navigator>
   );
@@ -117,6 +126,11 @@ const ProfilePage = () => {
       <Stack.Screen
         name="Announce"
         component={Announce}
+        options={{headerTitle: 'Anuncio'}}
+      />
+      <Stack.Screen
+        name="AnnounceEdit"
+        component={AnnounceEdit}
         options={{headerTitle: 'Anuncio'}}
       />
     </Stack.Navigator>
