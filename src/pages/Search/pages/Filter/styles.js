@@ -10,7 +10,7 @@ export const Container = styled.View`
 `;
 
 export const FilterView = styled.View`
-  flex                : 1;
+  height              : ${hp(19.43)}px;
   border-bottom-width : ${hp(.1)}px;
   border-bottom-color : #ddd;
   padding-left        : ${wp(5)}px;

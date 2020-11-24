@@ -1,4 +1,5 @@
 import React, { useState} from 'react';
+import { ScrollView } from 'react-native';
 
 import { 
   Container, FilterView, Title, PriceView, PriceInput, 
@@ -14,7 +15,7 @@ const Filter = () => {
   const [bathrooms, setBathrooms] = useState(0);
 
   return (
-    <Container>
+    <ScrollView style={{backgroundColor: '#fff'}}>
       <FilterView>
         <Title>Para: </Title>
         
@@ -113,7 +114,7 @@ const Filter = () => {
         </ButtonContainer>
       </FilterView>
 
-    </Container>
+    </ScrollView>
   );
 };
 
