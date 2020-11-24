@@ -58,6 +58,7 @@ const Details = ({route, navigation}) => {
   return (
     <>
       <ScrollView style={{backgroundColor: '#FFF'}}>
+        <Container1 />
         {image !== undefined ? (
           <Image
             source={{uri: `${image.url}`}}
@@ -68,7 +69,7 @@ const Details = ({route, navigation}) => {
           <PhotoView />
         )}
 
-        <Container>
+        <Container2>
           <ContentView>
             {loading ? (
               <View style={{justifyContent: 'center', alignItems: 'center'}}>
@@ -81,43 +82,57 @@ const Details = ({route, navigation}) => {
 
                   <ContentText>{item.address}</ContentText>
                 </DescriptionView>
-                
+
                 <SalesmanView>
                   <SalesmanInfoView>
                     <Ionicons name="person-circle" size={85} />
                     <View>
-                      <SalesmanText style={{fontFamily: 'Nunito-Light'}}>Vendedor</SalesmanText>
-                      <SalesmanText style={{fontFamily: 'Nunito-Regular'}}>{owner.name}</SalesmanText>
-                      <SalesmanText style={{fontFamily: 'Nunito-ExtraLightItalic'}}>{owner.email}</SalesmanText>
+                      <SalesmanText style={{fontFamily: 'Nunito-Light'}}>
+                        Vendedor
+                      </SalesmanText>
+                      <SalesmanText style={{fontFamily: 'Nunito-Regular'}}>
+                        {owner.name}
+                      </SalesmanText>
+                      <SalesmanText
+                        style={{fontFamily: 'Nunito-ExtraLightItalic'}}>
+                        {owner.email}
+                      </SalesmanText>
                     </View>
                   </SalesmanInfoView>
-                  <SalesmanDescription>"{item.description}"</SalesmanDescription>
+                  <SalesmanDescription>
+                    "{item.description}"
+                  </SalesmanDescription>
                 </SalesmanView>
-                
+
                 <MoreDetails>
                   <LineView>
                     <TitleDetails>Detalhes</TitleDetails>
                   </LineView>
-                  
+
                   <DescriptionDetailsView>
                     <View>
                       <DescriptionDetailsText>Quartos</DescriptionDetailsText>
-                      <DescriptionDetailsValueText>{item.number_bedroom}</DescriptionDetailsValueText>
+                      <DescriptionDetailsValueText>
+                        {item.number_bedroom}
+                      </DescriptionDetailsValueText>
                     </View>
-                    
+
                     <View>
                       <DescriptionDetailsText>Banheiros</DescriptionDetailsText>
-                      <DescriptionDetailsValueText>{item.number_bath}</DescriptionDetailsValueText>
-                    </View>
-                  </DescriptionDetailsView>
-                  
-                  <DescriptionDetailsView>
-                    <View>
-                      <DescriptionDetailsText>Área (m²)</DescriptionDetailsText>
-                      <DescriptionDetailsValueText>{item.land_size}</DescriptionDetailsValueText>
+                      <DescriptionDetailsValueText>
+                        {item.number_bath}
+                      </DescriptionDetailsValueText>
                     </View>
                   </DescriptionDetailsView>
 
+                  <DescriptionDetailsView>
+                    <View>
+                      <DescriptionDetailsText>Área (m²)</DescriptionDetailsText>
+                      <DescriptionDetailsValueText>
+                        {item.land_size}
+                      </DescriptionDetailsValueText>
+                    </View>
+                  </DescriptionDetailsView>
                 </MoreDetails>
                 {hour ? (
                   <>
@@ -131,7 +146,7 @@ const Details = ({route, navigation}) => {
               </>
             )}
           </ContentView>
-        </Container>
+        </Container2>
       </ScrollView>
     </>
   );

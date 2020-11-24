@@ -43,7 +43,7 @@ const Profile = ({navigation}) => {
       <IconButton onPress={() => navigateToConfig()}>
         <Ionicons name="settings-outline" size={35} color="#26d0ce" />
       </IconButton>
-      
+
       <UserDescriptionBackground>
         <IconBackground>
           <Ionicons name="person-circle" size={130} color="#000" />
@@ -52,24 +52,23 @@ const Profile = ({navigation}) => {
         <UserDescriptionText>{user.email}</UserDescriptionText>
         <UserDescriptionText>{user.cellphone}</UserDescriptionText>
       </UserDescriptionBackground>
-      
+
       <InfoView>
         <LineView>
           <Titles>Favoritos</Titles>
         </LineView>
         <WithoutFav>Você ainda não favoritou</WithoutFav>
-        
+
         <LineView>
           <Titles>Anúncios</Titles>
         </LineView>
-        
+
         <WithoutFav>Você possui um imóvel parado? Então...</WithoutFav>
-        
+
         <ButtonView onPress={navigateToAnnounce}>
           <ButtonText>Anuncie!</ButtonText>
         </ButtonView>
       </InfoView>
-    
     </Container>
   );
 };
