@@ -86,17 +86,21 @@ const Search = ({navigation}) => {
       <Container>
         <HeaderView>
           <SearchView>
-            <SearchInput />
+            <SearchInput placeholder={'Pesquise...'}/>
+            
             <SearchButton>
-              <MaterialIcons name="search" size={34} color="#666" />
-            </SearchButton>
-            <SearchButton onPress={() => navigateToFilter()}>
-              <OptionsView>
-                <Ionicons name="options-outline" size={34} color="#666" />
-              </OptionsView>
+              <MaterialIcons name="search" size={30} color="#666" />
             </SearchButton>
           </SearchView>
+            
+          <SearchButton onPress={() => navigateToFilter()}>
+            <OptionsView>
+              <Ionicons name="options-outline" size={34} color="#666" />
+            </OptionsView>
+          </SearchButton>
+          
         </HeaderView>
+
         {loading ? (
           <View style={{justifyContent: 'center', alignItems: 'center'}}>
             <ActivityIndicator color="#00b6e3" size="large" />

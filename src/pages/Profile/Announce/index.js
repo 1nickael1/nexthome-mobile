@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, TextInput, ScrollView, Alert} from 'react-native';
+import {View, ScrollView, Text} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 import api from '../../../services/api';
 import {getToken} from '../../../services/auth';
@@ -9,8 +9,13 @@ import {
   Content,
   TitleView,
   Title,
+  TextInput,
+  DetailsView,
+  TextInputDetails,
+  DetailsText,
   HourView,
   HourText,
+  HourInput,
   ButtonView,
   TextButton,
   ButtonCancelView,
@@ -55,38 +60,9 @@ const Announce = ({navigation}) => {
     <Container>
       <ScrollView>
         <Content>
+          
           <TitleView>
-            <Title>Metros quadrados</Title>
-            <TextInput
-              placeholder="EX: 100m2"
-              style={{
-                borderBottomColor: '#d3d3d3',
-                borderBottomWidth: 1,
-                alignSelf: 'center',
-                width: 200,
-              }}
-              onChangeText={(text) => setLand_size(text)}
-              value={land_size}
-            />
-          </TitleView>
-          <TitleView>
-            <Title>Preço</Title>
-
-            <TextInput
-              placeholder="R$"
-              style={{
-                borderBottomColor: '#d3d3d3',
-                borderBottomWidth: 1,
-                alignSelf: 'center',
-                width: 200,
-              }}
-              onChangeText={(text) => setPrice(text)}
-              value={price}
-              keyboardType="number-pad"
-            />
-          </TitleView>
-          <TitleView>
-            <Title>Tipo</Title>
+            <Title>Para:</Title>
             <Picker
               selectedValue={to_sell}
               onValueChange={(itemValue, itemIndex) => {
@@ -96,87 +72,71 @@ const Announce = ({navigation}) => {
               <Picker.Item label="Aluguel" value={false} />
             </Picker>
           </TitleView>
+
+          <TitleView>
+            <Title>Preço</Title>
+            <TextInput
+              value={price}
+              onChangeText={(text) => setPrice(text)}
+              placeholder="R$"
+              keyboardType="number-pad"
+            />
+          </TitleView>
+          
           <TitleView>
             <Title>Endereço</Title>
             <TextInput
-              placeholder="Endereço"
-              style={{
-                borderBottomColor: '#d3d3d3',
-                borderBottomWidth: 1,
-                alignSelf: 'center',
-                width: '100%',
-              }}
-              onChangeText={(text) => setAddress(text)}
               value={address}
+              onChangeText={(text) => setAddress(text)}
+              placeholder="Endereço"
             />
             <TextInput
-              placeholder="Descrição"
-              style={{
-                borderBottomColor: '#d3d3d3',
-                borderBottomWidth: 1,
-                alignSelf: 'center',
-                width: '100%',
-              }}
-              onChangeText={(text) => setDescription(text)}
               value={description}
+              onChangeText={(text) => setDescription(text)}
+              placeholder="Descrição"
             />
           </TitleView>
+          
           <TitleView>
             <Title>Detalhes</Title>
-            <TextInput
-              placeholder="Quantidade de banheiros"
-              style={{
-                borderBottomColor: '#d3d3d3',
-                borderBottomWidth: 1,
-                alignSelf: 'center',
-                width: '100%',
-              }}
-              onChangeText={(text) => setNumber_bath(text)}
-              value={number_bath}
-              keyboardType="number-pad"
-            />
-            <TextInput
-              placeholder="Quantidade de quartos"
-              style={{
-                borderBottomColor: '#d3d3d3',
-                borderBottomWidth: 1,
-                alignSelf: 'center',
-                width: '100%',
-              }}
-              onChangeText={(text) => setNumber_bedroom(text)}
-              value={number_bedroom}
-              keyboardType="number-pad"
-            />
+            
+            <DetailsView>
+              <DetailsText>Nº de banheiros: </DetailsText>
+              <TextInputDetails
+                value={number_bath}
+                onChangeText={(text) => setNumber_bath(text)}
+                placeholder="1"
+                keyboardType="number-pad"
+              />
+            </ DetailsView>
+            
+            <DetailsView>
+              <DetailsText>Nº de quartos: </DetailsText>
+              <TextInputDetails
+                value={number_bedroom}
+                onChangeText={(text) => setNumber_bedroom(text)}
+                placeholder="1"
+                keyboardType="number-pad"
+              />
+            </ DetailsView>
           </TitleView>
+          
           <TitleView>
             <Title>Horário de Atendimento</Title>
             <HourView>
               <HourText>Das</HourText>
-              <TextInput
+              <HourInput
                 placeholder="00"
                 maxLength={2}
-                style={{
-                  borderBottomColor: '#d3d3d3',
-                  borderBottomWidth: 1,
-                  alignSelf: 'center',
-                  width: '20%',
-                  textAlign: 'center',
-                }}
                 onChangeText={(text) => setInitial_hour(text)}
                 value={initial_hour}
                 keyboardType="number-pad"
               />
               <HourText>ás</HourText>
-              <TextInput
+              
+              <HourInput
                 placeholder="00"
                 maxLength={2}
-                style={{
-                  borderBottomColor: '#d3d3d3',
-                  borderBottomWidth: 1,
-                  alignSelf: 'center',
-                  width: '20%',
-                  textAlign: 'center',
-                }}
                 onChangeText={(text) => setFinal_hour(text)}
                 value={final_hour}
                 keyboardType="number-pad"
@@ -189,6 +149,7 @@ const Announce = ({navigation}) => {
           <ButtonCancelView onPress={() => navigation.goBack()}>
             <TextCancelButton>Cancelar</TextCancelButton>
           </ButtonCancelView>
+          
         </Content>
       </ScrollView>
     </Container>

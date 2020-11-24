@@ -51,52 +51,47 @@ const SignUp = ({navigation}) => {
     <Container>
       <ScrollView>
         <HeaderView>
+          
           <BackButton onPress={() => handleGoBack()}>
             <HeaderText>
-              <MaterialCommunityIcons
-                name="arrow-left"
-                size={44}
-                color="#FFF"
-              />
+              <MaterialCommunityIcons name="arrow-left" size={30} color="#818181" />
             </HeaderText>
           </BackButton>
+          
           <HeaderText>Cadastro</HeaderText>
+          <HeaderText></HeaderText>
         </HeaderView>
+        
         <Content>
           <InputView>
-            <MaterialIcons name="person-outline" color="#666" size={24} />
+            <MaterialIcons name="person-outline" color="#818181" size={24} />
             <TextInput
               value={name}
               onChangeText={(text) => setName(text)}
               placeholder="Nome"
             />
           </InputView>
+          
           <InputView>
-            <MaterialCommunityIcons
-              name="email-outline"
-              color="#666"
-              size={24}
-            />
+            <MaterialCommunityIcons name="email-outline" color="#818181" size={24} />
             <TextInput
               value={email}
               onChangeText={(text) => setEmail(text)}
               placeholder="E-mail"
             />
           </InputView>
+          
           <InputView>
-            <MaterialCommunityIcons
-              name="phone-outline"
-              color="#666"
-              size={24}
-            />
+            <MaterialCommunityIcons name="phone-outline" color="#818181" size={24} />
             <TextInput
               value={phone}
               onChangeText={(text) => setPhone(text)}
               placeholder="Telefone"
             />
           </InputView>
+          
           <InputView>
-            <MaterialCommunityIcons name="key-outline" color="#666" size={24} />
+            <MaterialCommunityIcons name="key-outline" color="#818181" size={24} />
             <TextInput
               value={password}
               onChangeText={(text) => setPassword(text)}
@@ -104,8 +99,9 @@ const SignUp = ({navigation}) => {
               secureTextEntry
             />
           </InputView>
+          
           <InputView>
-            <MaterialCommunityIcons name="key-outline" color="#666" size={24} />
+            <MaterialCommunityIcons name="key-outline" color="#818181" size={24} />
             <TextInput
               value={confirmPassword}
               onChangeText={(text) => setConfirmPassword(text)}
@@ -113,10 +109,12 @@ const SignUp = ({navigation}) => {
               secureTextEntry
             />
           </InputView>
-          <ButtonView onPress={() => handleSignUp()}>
-            <TextButton>Salvar</TextButton>
-          </ButtonView>
         </Content>
+          
+        <ButtonView onPress={() => handleSignUp()}>
+          <TextButton>Salvar</TextButton>
+        </ButtonView>
+
       </ScrollView>
     </Container>
   );
