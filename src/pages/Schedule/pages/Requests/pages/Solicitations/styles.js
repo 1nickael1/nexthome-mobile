@@ -5,34 +5,32 @@ import {
 } from 'react-native-responsive-screen';
 
 export const Container = styled.View`
+  flex            : 1;
   background-color: #fff;
-  flex: 1;
 `;
 
 export const Content = styled.View`
-  align-items: center;
-  margin-top: ${hp(2)}px;
-  margin-bottom: ${hp(2)}px;
+  align-items   : center;
+  padding-left  : ${wp(5)}px;
+  padding-right : ${wp(5)}px;
 `;
 
 export const VisitView = styled.View`
-  justify-content: center;
-  align-items: center;
-  margin-top: ${hp(2)}px;
-  width: ${wp(80)}px;
-  height: ${hp(8)}px;
-  flex-direction: row;
+  width           : ${wp(80)}px;
+  height          : ${hp(8)}px;
+  margin-top      : ${hp(4)}px;
+  flex-direction  : row;
+  align-items     : center;
+  justify-content : space-between;
 `;
 
 export const VisitButton = styled.TouchableOpacity`
-  background-color: #70d9d7;
-  width: ${wp(70)}px;
-  height: ${hp(8)}px;
-  border-radius: ${wp(1.5)}px;
-  justify-content: center;
-  align-items: center;
-  padding-left: ${wp(5)}px;
-  padding-right: ${wp(5)}px;
+  width           : ${wp(77)}px;
+  height          : ${hp(9)}px;
+  border-radius   : ${wp(1.5)}px;
+  justify-content : center;
+  align-items     : center;
+  background-color: #ffdbbb;
 `;
 
 export const VisitText = styled.Text`
