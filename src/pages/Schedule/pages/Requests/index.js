@@ -21,8 +21,8 @@ const Requests = ({navigation}) => {
     setVisits(data.houses);
   }
 
-  function navigateToSolicitations(house_visit) {
-    navigation.navigate('SolicitationsIndex', {house_visit});
+  function navigateToSolicitations(house_visit, address) {
+    navigation.navigate('SolicitationsIndex', {house_visit, address});
   }
 
   return (
@@ -33,7 +33,9 @@ const Requests = ({navigation}) => {
             visits.map((e) => (
               <VisitView key={e.id}>
                 <VisitButton
-                  onPress={() => navigateToSolicitations(e.house_visit)}>
+                  onPress={() =>
+                    navigateToSolicitations(e.house_visit, e.address)
+                  }>
                   <VisitText>{e.address}</VisitText>
                 </VisitButton>
               </VisitView>

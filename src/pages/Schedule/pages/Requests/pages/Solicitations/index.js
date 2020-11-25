@@ -4,10 +4,10 @@ import {View, Text, ScrollView} from 'react-native';
 import {Container, Content, VisitView, VisitButton, VisitText} from './styles';
 
 const Solicitations = ({route, navigation}) => {
-  const {house_visit} = route.params;
+  const {house_visit, address} = route.params;
 
-  function navigateToDetails() {
-    navigation.navigate('SolicitationsDetails');
+  function navigateToDetails(e) {
+    navigation.navigate('SolicitationsDetails', {visit: e, address});
   }
 
   return (
@@ -16,7 +16,7 @@ const Solicitations = ({route, navigation}) => {
         <Content>
           {house_visit.map((e) => (
             <VisitView key={e.day_hour_visit}>
-              <VisitButton onPress={() => navigateToDetails()}>
+              <VisitButton onPress={() => navigateToDetails(e)}>
                 <VisitText>{e.user.name}</VisitText>
               </VisitButton>
             </VisitView>
