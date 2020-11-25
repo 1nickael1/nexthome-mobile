@@ -64,9 +64,14 @@ export const CardView = styled.TouchableOpacity`
   border-color  : #ccc;
 `;
 
+export const CardImageView = styled.Image`
+  height                  : ${hp(20)}px;
+  border-top-left-radius  : ${wp(2)}px;
+  border-top-right-radius : ${wp(2)}px;
+`;
+
 export const CardPhotoView = styled.View`
   height                  : ${hp(20)}px;
-  /* width                : ${wp(90)}px; */
   background-color        : #000;
   border-top-left-radius  : ${wp(2)}px;
   border-top-right-radius : ${wp(2)}px;

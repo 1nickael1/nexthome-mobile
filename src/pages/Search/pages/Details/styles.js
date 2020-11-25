@@ -5,20 +5,29 @@ import {
 } from 'react-native-responsive-screen';
 
 export const Container1 = styled.View`
-  background-color: #26d0ce;
+  flex            : 1;
   height          : ${hp(30)}px;
-  width           : 100%;
   margin-bottom   : ${hp(5)}px;
+  background-color: #26d0ce;
+`;
+
+export const ImageView = styled.Image`
+  height          : ${hp(30)}px;
+  width           : ${wp(90)}px
+  border-radius   : ${wp(2.5)}px
+  margin-top      : ${hp(5)}px;
+  position        : absolute;
+  align-self      : center;
 `;
 
 export const PhotoView = styled.View`
   background-color: #000;
   height          : ${hp(30)}px;
-  width           : 95%;
-  border-radius   : ${wp(5)}px
+  width           : ${wp(90)}px
+  border-radius   : ${wp(2.5)}px
   margin-top      : ${hp(5)}px;
-  margin-left     : ${wp(2.5)}px;
   position        : absolute;
+  align-self      : center;
 `;
 
 export const Container2 = styled.View`
@@ -105,7 +114,7 @@ export const DescriptionDetailsValueText = styled.Text`
   font-family : 'Nunito-Light';
 `;
 
-export const ButtonView = styled.TouchableOpacity`
+export const ButtonView = styled.TouchableHighlight `
   background-color  : #26d0ce;
   height            : ${hp(7)}px;
   justify-content   : center;
