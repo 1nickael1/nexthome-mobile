@@ -50,74 +50,72 @@ const SignUp = ({navigation}) => {
 
   return (
     <Container>
-      <ScrollView contentContainerStyle={{flexGrow: 1}}>
-        <KeyboardAvoidingView style={{flex: 1}} behavior="height">
-          <HeaderView>
-            
-            <BackButton onPress={() => handleGoBack()}>
-              <HeaderText>
-                <MaterialCommunityIcons name="arrow-left" size={30} color="#818181" />
-              </HeaderText>
-            </BackButton>
-            
-            <HeaderText>Cadastro</HeaderText>
-          </HeaderView>
+      <ScrollView>
+        <HeaderView>
           
-          <Content>
-            <InputView>
-              <MaterialIcons name="person-outline" color="#818181" size={24} />
-              <TextInput
-                value={name}
-                onChangeText={(text) => setName(text)}
-                placeholder="Nome"
-              />
-            </InputView>
-            
-            <InputView>
-              <MaterialCommunityIcons name="email-outline" color="#818181" size={24} />
-              <TextInput
-                value={email}
-                onChangeText={(text) => setEmail(text)}
-                placeholder="E-mail"
-              />
-            </InputView>
-            
-            <InputView>
-              <MaterialCommunityIcons name="phone-outline" color="#818181" size={24} />
-              <TextInput
-                value={phone}
-                onChangeText={(text) => setPhone(text)}
-                placeholder="Telefone"
-              />
-            </InputView>
-            
-            <InputView>
-              <MaterialCommunityIcons name="key-outline" color="#818181" size={24} />
-              <TextInput
-                value={password}
-                onChangeText={(text) => setPassword(text)}
-                placeholder="Senha"
-                secureTextEntry
-              />
-            </InputView>
-            
-            <InputView>
-              <MaterialCommunityIcons name="key-outline" color="#818181" size={24} />
-              <TextInput
-                value={confirmPassword}
-                onChangeText={(text) => setConfirmPassword(text)}
-                placeholder="Confirmar Senha"
-                secureTextEntry
-              />
-            </InputView>
-          </Content>
+          <BackButton onPress={() => handleGoBack()}>
+            <HeaderText>
+              <MaterialCommunityIcons name="arrow-left" size={30} color="#818181" />
+            </HeaderText>
+          </BackButton>
           
-          <ButtonContainer>
-            <ButtonView onPress={() => handleSignUp()}>
-              <TextButton>Salvar</TextButton>
-            </ButtonView>
-          </ButtonContainer>
-        </KeyboardAvoidingView>
+          <HeaderText>Cadastro</HeaderText>
+        </HeaderView>
+        
+        <Content>
+          <InputView>
+            <MaterialIcons name="person-outline" color="#818181" size={24} />
+            <TextInput
+              value={name}
+              onChangeText={(text) => setName(text)}
+              placeholder="Nome"
+            />
+          </InputView>
+          
+          <InputView>
+            <MaterialCommunityIcons name="email-outline" color="#818181" size={24} />
+            <TextInput
+              value={email}
+              onChangeText={(text) => setEmail(text)}
+              placeholder="E-mail"
+            />
+          </InputView>
+          
+          <InputView>
+            <MaterialCommunityIcons name="phone-outline" color="#818181" size={24} />
+            <TextInput
+              value={phone}
+              onChangeText={(text) => setPhone(text)}
+              placeholder="Telefone"
+            />
+          </InputView>
+          
+          <InputView>
+            <MaterialCommunityIcons name="key-outline" color="#818181" size={24} />
+            <TextInput
+              value={password}
+              onChangeText={(text) => setPassword(text)}
+              placeholder="Senha"
+              secureTextEntry
+            />
+          </InputView>
+          
+          <InputView>
+            <MaterialCommunityIcons name="key-outline" color="#818181" size={24} />
+            <TextInput
+              value={confirmPassword}
+              onChangeText={(text) => setConfirmPassword(text)}
+              placeholder="Confirmar Senha"
+              secureTextEntry
+            />
+          </InputView>
+        </Content>
+        
+        <ButtonContainer>
+          <ButtonView onPress={() => handleSignUp()}>
+            <TextButton>Salvar</TextButton>
+          </ButtonView>
+        </ButtonContainer>
       </ ScrollView>
     </Container>
   );

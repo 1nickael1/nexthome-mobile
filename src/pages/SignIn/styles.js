@@ -4,13 +4,13 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 
-export const Container = styled.KeyboardAvoidingView`
+export const Container = styled.View`
   flex            : 1;
   background-color: #fff;
 `;
 
 export const HeaderContainer = styled.View`
-  flex            : 1;
+  height          : ${hp(50)}px;
   background-color: #26d0ce;
   padding-left    : ${wp(5)}px;
   justify-content : center;
@@ -23,14 +23,15 @@ export const Header = styled.Text`
 `;
 
 export const Container2 = styled.View`
-  flex              : 1;
+  height            : ${hp(50)}px;
   background-color  : #fff;
   padding-horizontal: ${wp(5)}px;
 `;
 
 export const Container3 = styled.View`
-  flex: 1.5;
-  justify-content: center;
+  height         : ${hp(25)}px;
+  justify-content: flex-end;
+  padding-bottom : ${hp(2)}px;
 `;
 
 export const InputView = styled.View`
@@ -45,13 +46,13 @@ export const InputView = styled.View`
 export const TextInput = styled.TextInput.attrs({
   placeholderTextColor: '#818181',
 })`
-  width       : 90%;
-  margin-left : 5px;
+  width       : ${wp(80)}px;
+  padding-left: ${wp(3)}px;
   font-size   : ${wp(3.5)}px;
 `;
 
 export const ButtonContainer = styled.View`
-  flex: 1;
+  height         : ${hp(35)}px;
   justify-content: center;
 `;
 
@@ -64,7 +65,7 @@ export const ButtonView = styled.TouchableOpacity`
 `;
 
 export const TextButton = styled.Text`
-  font-size   : ${wp(4)}px;
+  font-size   : ${wp(4.2)}px;
   color       : #fff;
   font-family : 'Nunito-SemiBold';
 `;
@@ -87,6 +88,5 @@ export const TextSignUp = styled.Text`
 export const TextSignUpBlue = styled.Text`
   font-size   : ${wp(4)}px;
   color       : #1C9E9C;
-  font-weight : 100;
   font-family : 'Nunito-Regular';
 `;

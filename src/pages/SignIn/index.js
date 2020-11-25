@@ -40,7 +40,6 @@ const SignIn = ({navigation}) => {
   }
 
   async function handleSignIn() {
-    // navigation.navigate('Menu');
     const response = await signin({email, password});
     if (response) {
       navigation.navigate('Menu');
@@ -49,7 +48,7 @@ const SignIn = ({navigation}) => {
 
   return (
     <Container behavior="height">
-      <>
+      <ScrollView>
         <HeaderContainer>
           <Header>Seja</Header>
           <Header>Bem-Vindo!</Header>
@@ -91,7 +90,7 @@ const SignIn = ({navigation}) => {
           </ButtonContainer>
           
         </Container2>
-      </>
+      </ScrollView>
     </ Container>
   );
 };
