@@ -140,7 +140,7 @@ const Profile = ({navigation}) => {
           )}
           
         </InfoView>
-        </ScrollView>
+      </ScrollView>
     </Container>
   );
 };

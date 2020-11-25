@@ -11,7 +11,6 @@ export const Container = styled.View`
 
 export const Content = styled.View`
   align-items   : center;
-  margin-top    : ${hp(2)}px;
   margin-bottom : ${hp(2)}px;
 `;
 
@@ -25,10 +24,45 @@ export const TitleView = styled.View`
 `;
 
 export const Title = styled.Text`
-  color         : #616161;
+  color         : #4C4C4C;
   margin-bottom : ${hp(1)}px;
   font-size     : ${wp(4.5)}px;
   font-family   : 'Nunito-SemiBold';
+`;
+
+export const WithoutPhotoView = styled.View`
+  width           : ${wp(40)}px;
+  height          : ${hp(20)}px;
+  justify-content : center;
+  align-items     : center;
+  align-self      : center;
+  border-radius   : ${wp(1.5)}px;
+  border-color    : #26d0ce;
+  border-width    : ${hp(0.1)}px;
+`;
+
+export const PhotoView = styled.View`
+  width           : ${wp(40)}px;
+  height          : ${hp(20)}px;
+  align-self      : center;
+`;
+
+export const PhotoButton = styled.TouchableOpacity`
+  width           : ${wp(80)}px;
+  height          : ${hp(6)}px;
+  border-radius   : ${wp(1.5)}px;
+  border-color    : #26d0ce;
+  border-width    : ${hp(0.15)}px;
+  margin-top      : ${hp(2)}px;
+  align-self      : center;
+  align-items     : center;
+  justify-content : center;
+`;
+
+export const PhotoButtonText = styled.Text`
+  color       : #26d0ce;
+  font-size   : ${wp(4.3)}px;
+  font-family : 'Nunito-Regular';
 `;
 
 export const TextInput = styled.TextInput.attrs({
@@ -37,7 +71,7 @@ export const TextInput = styled.TextInput.attrs({
   width               : ${wp(90)}px;
   margin-top          : ${hp(2)}px;
   border-bottom-width : ${hp(0.1)}px;
-  border-bottom-color : #d3d3d3;
+  border-bottom-color : #4C4C4C;
   font-size           : ${wp(3.8)}px;
   font-family         : 'Nunito-Regular';
 `;
@@ -58,7 +92,7 @@ export const TextInputDetails = styled.TextInput.attrs({
 })`
   width               : ${wp(20)}px;
   border-bottom-width : ${hp(0.1)}px;
-  border-bottom-color : #d3d3d3;
+  border-bottom-color : #4C4C4C;
   font-size           : ${wp(3.8)}px;
   font-family         : 'Nunito-Regular';
 `;
@@ -79,7 +113,7 @@ export const HourInput = styled.TextInput.attrs({
   placeholderTextColor: '#818181',
 })`
   width               : ${wp(20)}px;
-  border-bottom-color : #d3d3d3;
+  border-bottom-color : #4C4C4C;
   border-bottom-width : ${hp(0.1)}px;
   align-self          : center;
   text-align          : center;

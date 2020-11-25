@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {View, ScrollView, Text, Alert} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import api from '../../../services/api';
 import {getToken} from '../../../services/auth';
 
@@ -8,6 +9,10 @@ import {
   Container,
   Content,
   TitleView,
+  WithoutPhotoView,
+  PhotoView,
+  PhotoButton,
+  PhotoButtonText,
   Title,
   TextInput,
   DetailsView,
@@ -34,8 +39,14 @@ const AnnounceEdit = () => {
   const [land_size, setLand_size] = useState('');
 
   useEffect(() => {
-    
+    getHouse();
   }, []);
+
+  async function getHouse() {
+    const id = await getToken();
+    const {data} = await api.get(`houses/user/${id}`);
+    console.log(data);
+  }
 
   async function updateHouse() {
     const token = await getToken();
@@ -65,6 +76,17 @@ const AnnounceEdit = () => {
       <ScrollView>
         <Content>
           
+          <TitleView>
+            <Title>Foto</Title>
+            <WithoutPhotoView>
+              <Ionicons name="image-outline" size={60} color="#98E7E6" />
+            </WithoutPhotoView>
+
+            <PhotoButton>
+              <PhotoButtonText>Adicionar</PhotoButtonText>
+            </PhotoButton>
+          </TitleView>
+
           <TitleView>
             <Title>Para:</Title>
             <Picker
