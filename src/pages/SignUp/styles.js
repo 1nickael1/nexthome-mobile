@@ -42,17 +42,18 @@ export const InputView = styled.View`
   flex-direction      : row;
   align-items         : center;
   border-bottom-width : ${wp(0.2)}px;
-  border-color        : #666;
+  border-color        : ${props => props.focus ? '#1C9E9C' : '#666'};
   margin-bottom       : ${hp(1.5)}px;
   padding-left        : ${hp(1)}px;
 `;
 
-export const TextInput = styled.TextInput.attrs({
-  placeholderTextColor: '#818181',
-})`
+export const TextInput = styled.TextInput.attrs(props => ({
+  placeholderTextColor: props.focus ? '#1C9E9C' : '#666',
+}))`
   width       : ${wp(80)}px;
   padding-left: ${wp(3)}px;
-  font-size   : ${wp(3.5)}px;
+  font-size   : ${wp(4)}px;
+  font-family : 'Nunito-Regular';
 `;
 
 export const ButtonContainer = styled.View`
@@ -60,7 +61,7 @@ export const ButtonContainer = styled.View`
   padding-horizontal: ${wp(5)}px;
 `;
 
-export const ButtonView = styled.TouchableOpacity`
+export const ButtonView = styled.TouchableHighlight`
   background-color  : #26d0ce;
   height            : ${hp(7)}px;
   border-radius     : ${wp(1.5)}px;
