@@ -9,10 +9,32 @@ export const Container = styled.View`
   background-color: #fff;
 `;
 
+export const ConfirmView = styled.View`
+  padding-top   : ${hp(3)}px;
+  padding-bottom: ${hp(3)}px;
+  padding-left  : ${wp(5)}px; 
+  padding-right : ${wp(5)}px;
+`;
+
+export const ConfirmButton = styled.TouchableOpacity`
+  height          : ${hp(7)}px;
+  justify-content : center;
+  align-items     : center;
+  border-width    : ${hp(.2)}px;
+  border-color    : #26d0ce;
+  border-radius   : ${wp(1.5)}px;
+`;
+
+export const ConfirmText = styled.Text`
+  font-size   : ${wp(4.2)}px; 
+  color       : #26d0ce;
+  font-family : 'Nunito-Regular';
+`;
+
 export const FilterView = styled.View`
   height              : ${hp(19.43)}px;
-  border-bottom-width : ${hp(.1)}px;
-  border-bottom-color : #ddd;
+  border-top-width    : ${hp(.1)}px;
+  border-top-color    : #ddd;
   padding-left        : ${wp(5)}px;
   padding-right       : ${wp(5)}px;
   padding-top         : ${hp(2)}px;
@@ -60,7 +82,7 @@ export const ButtonText = styled.Text`
 `;
 
 export const ButtonSelected = styled.TouchableOpacity`
-  flex            : 1;
+  flex            : 1.2;
   height          : ${hp(5)}px;
   background-color: #26d0ce;
   border-radius   : ${wp(50)}px;
@@ -69,7 +91,7 @@ export const ButtonSelected = styled.TouchableOpacity`
 `;
 
 export const ButtonSelectedText = styled.Text`
-  font-size   : ${wp(3.5)}px;
+  font-size   : ${wp(3.7)}px;
   color       : #fff;
   font-family : 'Nunito-Regular';
 `;

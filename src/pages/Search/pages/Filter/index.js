@@ -4,6 +4,9 @@ import {ScrollView} from 'react-native';
 import {
   Container,
   FilterView,
+  ConfirmView,
+  ConfirmButton,
+  ConfirmText,
   Title,
   PriceView,
   PriceInput,
@@ -14,7 +17,7 @@ import {
   ButtonSelectedText,
 } from './styles';
 
-const Filter = () => {
+const Filter = ({navigation}) => {
   const [to_sell          , setTo_Sell]           = useState(null);
   const [toSellSelected   , setToSellSelected]    = useState(1);
   const [minPrice         , setMinPrice]          = useState(0);
@@ -25,8 +28,19 @@ const Filter = () => {
   const [bathrooms        , setBathrooms]         = useState(0);
   const [bahtroomsSelected, setBathroomsSelected] = useState(1);
 
+  function applyFilters() {
+    navigation.goBack();
+  }
+
   return (
     <ScrollView style={{backgroundColor: '#fff'}}>
+      
+      <ConfirmView>
+        <ConfirmButton onPress={() => {applyFilters();}}>
+          <ConfirmText>Aplicar filtros</ConfirmText>
+        </ConfirmButton>
+      </ConfirmView>
+      
       <FilterView>
         <Title>Para: </Title>
 
@@ -124,15 +138,6 @@ const Filter = () => {
             </ButtonView>
           )}
 
-          {bedroomsSelected === 5 ? (
-            <ButtonSelected>
-              <ButtonSelectedText>4</ButtonSelectedText>
-            </ButtonSelected>
-          ) : (
-            <ButtonView onPress={() => {setBedroomsSelected(5);}}>
-              <ButtonText>4</ButtonText>
-            </ButtonView>
-          )}
         </ButtonContainer>
       </FilterView>
 
@@ -177,16 +182,6 @@ const Filter = () => {
           ) : (
             <ButtonView onPress={() => {setBathroomsSelected(4);}}>
               <ButtonText>3</ButtonText>
-            </ButtonView>
-          )}
-
-          {bahtroomsSelected === 5 ? (
-            <ButtonSelected>
-              <ButtonSelectedText>4</ButtonSelectedText>
-            </ButtonSelected>
-          ) : (
-            <ButtonView onPress={() => {setBathroomsSelected(5);}}>
-              <ButtonText>4</ButtonText>
             </ButtonView>
           )}
           
