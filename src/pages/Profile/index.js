@@ -62,6 +62,10 @@ const Profile = ({navigation}) => {
     });
   }
 
+  function navigateToEditHouse() {
+    navigation.navigate('AnnounceEdit');
+  }
+
   const FlatItemHouse = ({price, address, to_sell, id, item, image}) => (
     <CardView>
       <CardPhotoView />
@@ -69,7 +73,7 @@ const Profile = ({navigation}) => {
         <CardTextPrice>R$ {price}</CardTextPrice>
         <CardText>{address}</CardText>
       </CardTextView>
-      <CardInfoEdit>
+      <CardInfoEdit onPress={() => navigateToEditHouse()}>
         <Ionicons name="pencil-outline" size={40} color="#26d0ce" style={{marginLeft:8}}/>
       </CardInfoEdit>
     </CardView>
