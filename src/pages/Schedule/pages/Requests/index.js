@@ -4,7 +4,7 @@ import {useIsFocused} from '@react-navigation/native';
 import api from '../../../../services/api';
 import {getToken} from '../../../../services/auth';
 
-import {Container, Content, VisitView, VisitButton} from './styles';
+import {Container, Content, VisitView, VisitButton, VisitText} from './styles';
 
 const Requests = ({navigation}) => {
   const [visits, setVisits] = useState([]);
@@ -34,7 +34,7 @@ const Requests = ({navigation}) => {
               <VisitView key={e.id}>
                 <VisitButton
                   onPress={() => navigateToSolicitations(e.house_visit)}>
-                  <Text>{e.address}</Text>
+                  <VisitText>{e.address}</VisitText>
                 </VisitButton>
               </VisitView>
             ))

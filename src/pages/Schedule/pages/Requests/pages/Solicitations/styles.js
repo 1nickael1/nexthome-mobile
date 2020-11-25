@@ -28,9 +28,15 @@ export const VisitButton = styled.TouchableOpacity`
   background-color: #70d9d7;
   width: ${wp(70)}px;
   height: ${hp(8)}px;
-  border-radius: ${wp(5)}px;
+  border-radius: ${wp(1.5)}px;
   justify-content: center;
   align-items: center;
   padding-left: ${wp(5)}px;
   padding-right: ${wp(5)}px;
+`;
+
+export const VisitText = styled.Text`
+  font-size   : ${wp(4)}px;
+  color       : #000;
+  font-family : 'Nunito-Regular';
 `;
