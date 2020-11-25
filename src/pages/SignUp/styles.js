@@ -42,13 +42,13 @@ export const InputView = styled.View`
   flex-direction      : row;
   align-items         : center;
   border-bottom-width : ${wp(0.2)}px;
-  border-color        : ${props => props.focus ? '#1C9E9C' : '#666'};
+  border-color        : ${props => props.empty ? '#FF6767' : props.focus ? '#1C9E9C' : '#666'};
   margin-bottom       : ${hp(1.5)}px;
   padding-left        : ${hp(1)}px;
 `;
 
 export const TextInput = styled.TextInput.attrs(props => ({
-  placeholderTextColor: props.focus ? '#1C9E9C' : '#666',
+  placeholderTextColor: props.empty ? '#FF6767' : props.focus ? '#1C9E9C' : '#666',
 }))`
   width       : ${wp(80)}px;
   padding-left: ${wp(3)}px;

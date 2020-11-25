@@ -31,8 +31,27 @@ const SignUp = ({navigation}) => {
   const [passwordOnFocus        , setPasswordOnFocus        ] = useState(false);
   const [confirmPasswordOnFocus , setConfirmPasswordOnFocus ] = useState(false);
 
+  const [nameEmpty            , setNameEmpty            ] = useState(false);
+  const [emailEmpty           , setEmailEmpty           ] = useState(false);
+  const [phoneEmpty           , setPhoneEmpty           ] = useState(false);
+  const [passwordEmpty        , setPasswordEmpty        ] = useState(false);
+  const [confirmPasswordEmpty , setConfirmPasswordEmpty ] = useState(false);
+
   function handleGoBack() {
     navigation.goBack();
+  }
+
+  function checkEmptyFields() {
+    let one = false;
+
+    if (name.length             == 0) { one = true; setNameEmpty(true);}
+    if (email.length            == 0) { one = true; setEmailEmpty(true);}
+    if (phone.length            == 0) { one = true; setPhoneEmpty(true);}
+    if (password.length         == 0) { one = true; setPasswordEmpty(true);}
+    if (confirmPassword.length  == 0) { one = true; setConfirmPasswordEmpty(true);}
+
+    if (one) return;
+    handleSignUp();
   }
 
   async function handleSignUp() {
@@ -70,84 +89,89 @@ const SignUp = ({navigation}) => {
         
         <Content>
 
-          <InputView focus={nameOnFocus}>
+          <InputView focus={nameOnFocus} empty={nameEmpty}>
             <MaterialIcons 
               name="person-outline" 
-              color={nameOnFocus ? "#1C9E9C" : "#818181"} 
+              color={nameEmpty ? '#FF6767' : (nameOnFocus ? "#1C9E9C" : "#818181")} 
               size={24} 
             />
             <TextInput
               value={name}
-              onChangeText={(text) => setName(text)}
+              onChangeText={(text) => {setName(text); setNameEmpty(false);}}
               placeholder="Nome"
               focus={nameOnFocus}
+              empty={nameEmpty}
               onFocus={() => setNameOnFocus(true)}
               onBlur={() => setNameOnFocus(false)}
             />
           </InputView>
           
-          <InputView focus={emailOnFocus}>
+          <InputView focus={emailOnFocus} empty={emailEmpty}>
             <MaterialCommunityIcons 
               name="email-outline" 
-              color={emailOnFocus ? "#1C9E9C" : "#818181"} 
+              color={emailEmpty ? '#FF6767' : (emailOnFocus ? "#1C9E9C" : "#818181")} 
               size={24} 
             />
             <TextInput
               value={email}
-              onChangeText={(text) => setEmail(text)}
+              onChangeText={(text) => {setEmail(text); setEmailEmpty(false);}}
               placeholder="E-mail"
               focus={emailOnFocus}
+              empty={emailEmpty}
               onFocus={() => setEmailOnFocus(true)}
               onBlur={() => setEmailOnFocus(false)}
             />
           </InputView>
           
-          <InputView focus={phoneOnFocus}>
+          <InputView focus={phoneOnFocus} empty={phoneEmpty}>
             <MaterialCommunityIcons 
               name="phone-outline" 
-              color={phoneOnFocus ? "#1C9E9C" : "#818181"} 
+              color={phoneEmpty ? '#FF6767' : (phoneOnFocus ? "#1C9E9C" : "#818181")} 
               size={24} 
             />
             <TextInput
               value={phone}
-              onChangeText={(text) => setPhone(text)}
+              onChangeText={(text) => {setPhone(text); setPhoneEmpty(false);}}
               placeholder="Telefone"
               keyboardType="phone-pad"
               focus={phoneOnFocus}
+              empty={phoneEmpty}
               onFocus={() => setPhoneOnFocus(true)}
               onBlur={() => setPhoneOnFocus(false)}
             />
           </InputView>
           
-          <InputView focus={passwordOnFocus}>
+          <InputView focus={passwordOnFocus} empty={passwordEmpty}>
             <MaterialCommunityIcons 
               name="key-outline" 
-              color={passwordOnFocus ? "#1C9E9C" : "#818181"} 
+              color={passwordEmpty ? '#FF6767' : (passwordOnFocus ? "#1C9E9C" : "#818181")} 
               size={24} 
             />
             <TextInput
               value={password}
-              onChangeText={(text) => setPassword(text)}
+              onChangeText={(text) => {setPassword(text); setPasswordEmpty(false);}}
               placeholder="Senha"
               secureTextEntry
               focus={passwordOnFocus}
+              empty={passwordEmpty}
               onFocus={() => setPasswordOnFocus(true)}
               onBlur={() => setPasswordOnFocus(false)}
             />
           </InputView>
           
-          <InputView focus={confirmPasswordOnFocus}>
+          <InputView focus={confirmPasswordOnFocus} empty={confirmPasswordEmpty}>
             <MaterialCommunityIcons 
               name="key-outline" 
-              color={confirmPasswordOnFocus ? "#1C9E9C" : "#818181"} 
+              color={confirmPasswordEmpty ? '#FF6767' : (confirmPasswordOnFocus ? "#1C9E9C" : "#818181")} 
               size={24} 
             />
             <TextInput
               value={confirmPassword}
-              onChangeText={(text) => setConfirmPassword(text)}
+              onChangeText={(text) => {setConfirmPassword(text); setConfirmPasswordEmpty(false);}}
               placeholder="Confirmar Senha"
               secureTextEntry
               focus={confirmPasswordOnFocus}
+              empty={confirmPasswordEmpty}
               onFocus={() => setConfirmPasswordOnFocus(true)}
               onBlur={() => setConfirmPasswordOnFocus(false)}
             />
@@ -155,7 +179,7 @@ const SignUp = ({navigation}) => {
         </Content>
         
         <ButtonContainer>
-          <ButtonView onPress={() => handleSignUp()} underlayColor="#1C9E9C">
+          <ButtonView onPress={() => checkEmptyFields()} underlayColor="#1C9E9C">
             <TextButton>Salvar</TextButton>
           </ButtonView>
         </ButtonContainer>
