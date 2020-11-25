@@ -15,13 +15,15 @@ import {
 } from './styles';
 
 const Filter = () => {
-  const [to_sell, setTo_Sell] = useState(null);
-  const [toSellSelected, setToSellSelected] = useState(1);
-  const [minPrice, setMinPrice] = useState(0);
-  const [maxPrince, setMaxPrice] = useState(0);
-  const [type, setType] = useState(0);
-  const [bedrooms, setBedrooms] = useState(0);
-  const [bathrooms, setBathrooms] = useState(0);
+  const [to_sell          , setTo_Sell]           = useState(null);
+  const [toSellSelected   , setToSellSelected]    = useState(1);
+  const [minPrice         , setMinPrice]          = useState(0);
+  const [maxPrince        , setMaxPrice]          = useState(0);
+  const [type             , setType]              = useState(0);
+  const [bedrooms         , setBedrooms]          = useState(0);
+  const [bedroomsSelected , setBedroomsSelected]  = useState(1);
+  const [bathrooms        , setBathrooms]         = useState(0);
+  const [bahtroomsSelected, setBathroomsSelected] = useState(1);
 
   return (
     <ScrollView style={{backgroundColor: '#fff'}}>
@@ -34,10 +36,7 @@ const Filter = () => {
               <ButtonSelectedText>Ambos</ButtonSelectedText>
             </ButtonSelected>
           ) : (
-            <ButtonView
-              onPress={() => {
-                setToSellSelected(1);
-              }}>
+            <ButtonView onPress={() => {setToSellSelected(1);}}>
               <ButtonText>Ambos</ButtonText>
             </ButtonView>
           )}
@@ -47,22 +46,17 @@ const Filter = () => {
               <ButtonSelectedText>Venda</ButtonSelectedText>
             </ButtonSelected>
           ) : (
-            <ButtonView
-              onPress={() => {
-                setToSellSelected(2);
-              }}>
+            <ButtonView onPress={() => {setToSellSelected(2);}}>
               <ButtonText>Venda</ButtonText>
             </ButtonView>
           )}
+
           {toSellSelected === 3 ? (
             <ButtonSelected>
               <ButtonSelectedText>Aluguel</ButtonSelectedText>
             </ButtonSelected>
           ) : (
-            <ButtonView
-              onPress={() => {
-                setToSellSelected(3);
-              }}>
+            <ButtonView onPress={() => {setToSellSelected(3);}}>
               <ButtonText>Aluguel</ButtonText>
             </ButtonView>
           )}
@@ -89,21 +83,56 @@ const Filter = () => {
         <Title>Quartos</Title>
 
         <ButtonContainer>
-          <ButtonView>
-            <ButtonText>Qualquer</ButtonText>
-          </ButtonView>
-          <ButtonView>
-            <ButtonText>1</ButtonText>
-          </ButtonView>
-          <ButtonView>
-            <ButtonText>2</ButtonText>
-          </ButtonView>
-          <ButtonView>
-            <ButtonText>3</ButtonText>
-          </ButtonView>
-          <ButtonView>
-            <ButtonText>4</ButtonText>
-          </ButtonView>
+
+          {bedroomsSelected === 1 ? (
+            <ButtonSelected>
+              <ButtonSelectedText>Qualquer</ButtonSelectedText>
+            </ButtonSelected>
+          ) : (
+            <ButtonView onPress={() => {setBedroomsSelected(1);}}>
+              <ButtonText>Qualquer</ButtonText>
+            </ButtonView>
+          )}
+
+          {bedroomsSelected === 2 ? (
+            <ButtonSelected>
+              <ButtonSelectedText>1</ButtonSelectedText>
+            </ButtonSelected>
+          ) : (
+            <ButtonView onPress={() => {setBedroomsSelected(2);}}>
+              <ButtonText>1</ButtonText>
+            </ButtonView>
+          )}
+
+          {bedroomsSelected === 3 ? (
+            <ButtonSelected>
+              <ButtonSelectedText>2</ButtonSelectedText>
+            </ButtonSelected>
+          ) : (
+            <ButtonView onPress={() => {setBedroomsSelected(3);}}>
+              <ButtonText>2</ButtonText>
+            </ButtonView>
+          )}
+
+          {bedroomsSelected === 4 ? (
+            <ButtonSelected>
+              <ButtonSelectedText>3</ButtonSelectedText>
+            </ButtonSelected>
+          ) : (
+            <ButtonView onPress={() => {setBedroomsSelected(4);}}>
+              <ButtonText>3</ButtonText>
+            </ButtonView>
+          )}
+
+          {bedroomsSelected === 5 ? (
+            <ButtonSelected>
+              <ButtonSelectedText>4</ButtonSelectedText>
+            </ButtonSelected>
+          ) : (
+            <ButtonView onPress={() => {setBedroomsSelected(5);}}>
+              <ButtonText>4</ButtonText>
+            </ButtonView>
+          )}
         </ButtonContainer>
       </FilterView>
 
@@ -111,21 +140,56 @@ const Filter = () => {
         <Title>Banheiros</Title>
 
         <ButtonContainer>
-          <ButtonView>
-            <ButtonText>Qualquer</ButtonText>
-          </ButtonView>
-          <ButtonView>
-            <ButtonText>1</ButtonText>
-          </ButtonView>
-          <ButtonView>
-            <ButtonText>2</ButtonText>
-          </ButtonView>
-          <ButtonView>
-            <ButtonText>3</ButtonText>
-          </ButtonView>
-          <ButtonView>
-            <ButtonText>4</ButtonText>
-          </ButtonView>
+          {bahtroomsSelected === 1 ? (
+            <ButtonSelected>
+              <ButtonSelectedText>Qualquer</ButtonSelectedText>
+            </ButtonSelected>
+          ) : (
+            <ButtonView onPress={() => {setBathroomsSelected(1);}}>
+              <ButtonText>Qualquer</ButtonText>
+            </ButtonView>
+          )}
+
+          {bahtroomsSelected === 2 ? (
+            <ButtonSelected>
+              <ButtonSelectedText>1</ButtonSelectedText>
+            </ButtonSelected>
+          ) : (
+            <ButtonView onPress={() => {setBathroomsSelected(2);}}>
+              <ButtonText>1</ButtonText>
+            </ButtonView>
+          )}
+
+          {bahtroomsSelected === 3 ? (
+            <ButtonSelected>
+              <ButtonSelectedText>2</ButtonSelectedText>
+            </ButtonSelected>
+          ) : (
+            <ButtonView onPress={() => {setBathroomsSelected(3);}}>
+              <ButtonText>2</ButtonText>
+            </ButtonView>
+          )}
+
+          {bahtroomsSelected === 4 ? (
+            <ButtonSelected>
+              <ButtonSelectedText>3</ButtonSelectedText>
+            </ButtonSelected>
+          ) : (
+            <ButtonView onPress={() => {setBathroomsSelected(4);}}>
+              <ButtonText>3</ButtonText>
+            </ButtonView>
+          )}
+
+          {bahtroomsSelected === 5 ? (
+            <ButtonSelected>
+              <ButtonSelectedText>4</ButtonSelectedText>
+            </ButtonSelected>
+          ) : (
+            <ButtonView onPress={() => {setBathroomsSelected(5);}}>
+              <ButtonText>4</ButtonText>
+            </ButtonView>
+          )}
+          
         </ButtonContainer>
       </FilterView>
     </ScrollView>
