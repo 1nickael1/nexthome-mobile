@@ -89,3 +89,10 @@ export const ButtonDenyText = styled.Text`
   color       : #ff6767;
   font-family : 'Nunito-Regular';
 `;
+
+export const ConfirmedVisitView = styled.TouchableOpacity`
+  justify-content : center;
+  align-items     : center;
+  height          : ${hp(8)}px;
+  width           : ${wp(40)}px;
+`;

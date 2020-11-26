@@ -16,6 +16,7 @@ import {
   ButtonAcceptText,
   ButtonDenyView,
   ButtonDenyText,
+  ConfirmedVisitView,
 } from './styles';
 
 const SolicitationsDetails = ({route, navigation}) => {
@@ -66,9 +67,9 @@ const SolicitationsDetails = ({route, navigation}) => {
       <ButtonContainer>
         {visit.is_confirmed ? (
           <>
-            <ButtonAcceptView onPress={goBack}>
-              <ButtonAcceptText>Visita Confirmada</ButtonAcceptText>
-            </ButtonAcceptView>
+            <ConfirmedVisitView onPress={goBack}>
+              <Ionicons name="checkmark-circle-outline" size={80} color="#26d0ce"/>
+            </ConfirmedVisitView>
           </>
         ) : (
           <>
