@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {View, Text, FlatList, ActivityIndicator, ScrollView} from 'react-native';
+import {useIsFocused} from '@react-navigation/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import api from '../../services/api';
 import {getToken} from '../../services/auth';
@@ -29,10 +30,12 @@ const Profile = ({navigation}) => {
   const [houses, setHouses] = useState({});
   const [loading, setLoading] = useState(true);
 
+  const isFocused = useIsFocused();
+
   useEffect(() => {
     getInfo();
     getHouses();
-  }, []);
+  }, [isFocused]);
 
   async function getInfo() {
     const id = await getToken();
@@ -104,10 +107,6 @@ const Profile = ({navigation}) => {
         </UserDescriptionBackground>
         
         <InfoView>
-          <LineView>
-            <Titles>Favoritos</Titles>
-          </LineView>
-          <WithoutFav>Você ainda não favoritou</WithoutFav>
           
           <LineView>
             <Titles>Anúncios</Titles>
