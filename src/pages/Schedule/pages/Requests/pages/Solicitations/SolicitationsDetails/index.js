@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import api from '../../../../../../../services/api';
 
 import {
   Container,
@@ -21,6 +22,17 @@ const SolicitationsDetails = ({route, navigation}) => {
   const {visit, address} = route.params;
 
   function cancelSolicitation() {
+    api
+      .delete(`delete/visit/${visit.id}`)
+      .then(() => navigation.pop(2))
+      .catch((e) => console.log(e));
+  }
+
+  function confirmSolicitation() {
+    api.put(`update/visit/${visit.id}/confirm`).then((e) => navigation.pop(2));
+  }
+
+  function goBack() {
     navigation.pop(2);
   }
 
@@ -52,13 +64,23 @@ const SolicitationsDetails = ({route, navigation}) => {
       </UserView>
 
       <ButtonContainer>
-        <ButtonDenyView onPress={cancelSolicitation}>
-          <ButtonDenyText>Recusar</ButtonDenyText>
-        </ButtonDenyView>
+        {visit.is_confirmed ? (
+          <>
+            <ButtonAcceptView onPress={goBack}>
+              <ButtonAcceptText>Visita Confirmada</ButtonAcceptText>
+            </ButtonAcceptView>
+          </>
+        ) : (
+          <>
+            <ButtonDenyView onPress={cancelSolicitation}>
+              <ButtonDenyText>Recusar</ButtonDenyText>
+            </ButtonDenyView>
 
-        <ButtonAcceptView>
-          <ButtonAcceptText>Aceitar</ButtonAcceptText>
-        </ButtonAcceptView>
+            <ButtonAcceptView onPress={confirmSolicitation}>
+              <ButtonAcceptText>Aceitar</ButtonAcceptText>
+            </ButtonAcceptView>
+          </>
+        )}
       </ButtonContainer>
     </Container>
   );
