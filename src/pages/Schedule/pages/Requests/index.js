@@ -1,13 +1,21 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, ScrollView} from 'react-native';
+import {View, Text, ScrollView, ActivityIndicator} from 'react-native';
 import {useIsFocused} from '@react-navigation/native';
 import api from '../../../../services/api';
 import {getToken} from '../../../../services/auth';
 
-import {Container, Content, VisitView, VisitButton} from './styles';
+import {
+  Container,
+  Content,
+  VisitView,
+  VisitText,
+  VisitButton,
+  VisitButtonText,
+} from './styles';
 
 const Requests = ({navigation}) => {
   const [visits, setVisits] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const isFocused = useIsFocused();
 
@@ -16,25 +24,31 @@ const Requests = ({navigation}) => {
   }, [isFocused]);
 
   async function getVisits() {
+    setLoading(true);
     const id = await getToken();
     const {data} = await api.get(`visit/seller/${id}`);
     setVisits(data.houses);
+    setLoading(false);
   }
 
-  function navigateToSolicitations(house_visit) {
-    navigation.navigate('SolicitationsIndex', {house_visit});
+  function navigateToSolicitations(house_visit, address) {
+    navigation.navigate('SolicitationsIndex', {house_visit, address});
   }
 
   return (
     <Container>
       <ScrollView>
         <Content>
-          {visits.length > 1 ? (
+          {loading ? (
+            <ActivityIndicator size="large" color="#26d0ce" />
+          ) : visits.length > 1 ? (
             visits.map((e) => (
               <VisitView key={e.id}>
                 <VisitButton
-                  onPress={() => navigateToSolicitations(e.house_visit)}>
-                  <Text>{e.address}</Text>
+                  onPress={() =>
+                    navigateToSolicitations(e.house_visit, e.address)
+                  }>
+                  <VisitText>{e.address}</VisitText>
                 </VisitButton>
               </VisitView>
             ))
