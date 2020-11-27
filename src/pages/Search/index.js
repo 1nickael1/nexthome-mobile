@@ -15,6 +15,7 @@ import {
   SearchButton,
   Content,
   CardView,
+  CardImageView,
   CardPhotoView,
   PriceText,
   CardTextView,
@@ -52,9 +53,8 @@ const Search = ({navigation}) => {
   const FlatItem = ({price, address, to_sell, id, item, image}) => (
     <CardView onPress={() => navigateToDetails({id, item, image})}>
       {image !== undefined ? (
-        <Image
+        <CardImageView
           source={{uri: `${image.url}`}}
-          style={{height: 200, width: '100%'}}
           resizeMode={'contain'}
         />
       ) : (

@@ -5,14 +5,14 @@ import {
 } from 'react-native-responsive-screen';
 
 export const Container = styled.View`
-  background-color: #fff;
   flex            : 1;
+  background-color: #fff;
 `;
 
 export const HeaderView = styled.View`
   border-color          : #26d0ce;
   border-bottom-width   : ${wp(0.3)}px;
-  padding-top           : ${hp(3)}px;
+  padding-top           : ${hp(2)}px;
   padding-left          : ${wp(5)}px;
   padding-bottom        : ${wp(2)}px;
   flex-direction        : row;
@@ -31,35 +31,37 @@ export const BackButton = styled.TouchableOpacity`
 `;
 
 export const Content = styled.View`
-  flex              : 3.5;
-  justify-content   : center;
-  padding-horizontal: ${wp(5)}px;
-`;
-
-export const TextInput = styled.TextInput.attrs({
-  placeholderTextColor: '#818181',
-})`
-  width       : 90%;
-  margin-left : 5px;
-  font-size   : ${wp(3.5)}px;
+  height          : ${hp(80)}px;
+  padding-left    : ${wp(5)}px;
+  padding-right   : ${wp(5)}px;
+  justify-content : center;
+  align-items     : center;
 `;
 
 export const InputView = styled.View`
   flex-direction      : row;
   align-items         : center;
   border-bottom-width : ${wp(0.2)}px;
-  border-color        : #666;
+  border-color        : ${props => props.empty ? '#FF6767' : props.focus ? '#1C9E9C' : '#666'};
   margin-bottom       : ${hp(1.5)}px;
   padding-left        : ${hp(1)}px;
 `;
 
+export const TextInput = styled.TextInput.attrs(props => ({
+  placeholderTextColor: props.empty ? '#FF6767' : props.focus ? '#1C9E9C' : '#666',
+}))`
+  width       : ${wp(80)}px;
+  padding-left: ${wp(3)}px;
+  font-size   : ${wp(4)}px;
+  font-family : 'Nunito-Regular';
+`;
+
 export const ButtonContainer = styled.View`
-  flex              : 1;
   justify-content   : center;
   padding-horizontal: ${wp(5)}px;
 `;
 
-export const ButtonView = styled.TouchableOpacity`
+export const ButtonView = styled.TouchableHighlight`
   background-color  : #26d0ce;
   height            : ${hp(7)}px;
   border-radius     : ${wp(1.5)}px;
@@ -68,7 +70,7 @@ export const ButtonView = styled.TouchableOpacity`
 `;
 
 export const TextButton = styled.Text`
-  font-size   : ${wp(4)}px;
+  font-size   : ${wp(4.2)}px;
   color       : #fff;
   font-family : 'Nunito-SemiBold';
 `;

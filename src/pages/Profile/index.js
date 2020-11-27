@@ -122,11 +122,6 @@ const Profile = ({navigation}) => {
 
         <InfoView>
           <LineView>
-            <Titles>Favoritos</Titles>
-          </LineView>
-          <WithoutFav>Você ainda não favoritou</WithoutFav>
-
-          <LineView>
             <Titles>Anúncios</Titles>
           </LineView>
 

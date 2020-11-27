@@ -24,6 +24,12 @@ const SignIn = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const [onFocusEmail, setOnFocusEmail] = useState(false);
+  const [onFocusPass, setOnFocusPass] = useState(false);
+
+  const [emptyEmail, setEmptyEmail] = useState(false);
+  const [emptyPass, setEmptyPass] = useState(false);
+
   useEffect(() => {
     verifyToken();
   }, []);
@@ -39,8 +45,17 @@ const SignIn = ({navigation}) => {
     navigation.navigate('SignUp');
   }
 
+  function checkEmptyInputs() {
+    let one = false;
+
+    if (email.length    == 0) { one = true; setEmptyEmail(true); }
+    if (password.length == 0) { one = true; setEmptyPass(true); }
+
+    if (one) return;
+    handleSignIn();
+  }
+
   async function handleSignIn() {
-    // navigation.navigate('Menu');
     const response = await signin({email, password});
     if (response) {
       navigation.navigate('Menu');
@@ -49,7 +64,7 @@ const SignIn = ({navigation}) => {
 
   return (
     <Container behavior="height">
-      <>
+      <ScrollView>
         <HeaderContainer>
           <Header>Seja</Header>
           <Header>Bem-Vindo!</Header>
@@ -58,28 +73,43 @@ const SignIn = ({navigation}) => {
         <Container2>
 
           <Container3>
-            <InputView>
-              <MaterialCommunityIcons name="email-outline" color="#666" size={24} />
+            <InputView focus={onFocusEmail} empty={emptyEmail}>
+              <MaterialCommunityIcons 
+                name="email-outline" 
+                color={emptyEmail ? '#FF6767' : (onFocusEmail ? "#1C9E9C" : "#818181")} 
+                size={24} />
               <TextInput
                 value={email}
-                onChangeText={(text) => setEmail(text)}
+                onChangeText={(text) => {setEmail(text); setEmptyEmail(false);}}
                 placeholder="E-mail"
+                focus={onFocusEmail}
+                empty={emptyEmail}
+                onFocus={() => setOnFocusEmail(true)}
+                onBlur={() => setOnFocusEmail(false)}
               />
             </InputView>
 
-            <InputView>
-              <MaterialCommunityIcons name="key-outline" color="#666" size={24} />
+            <InputView focus={onFocusPass} empty={emptyPass}>
+              <MaterialCommunityIcons 
+                name="key-outline" 
+                color={emptyPass ? '#FF6767' : (onFocusPass ? "#1C9E9C" : "#818181")} 
+                size={24} 
+              />
               <TextInput
                 value={password}
-                onChangeText={(text) => setPassword(text)}
+                onChangeText={(text) => {setPassword(text); setEmptyPass(false);}}
                 secureTextEntry
                 placeholder="Senha"
+                focus={onFocusPass}
+                empty={emptyPass}
+                onFocus={() => setOnFocusPass(true)}
+                onBlur={() => setOnFocusPass(false)}
               />
             </InputView>
           </Container3>
 
           <ButtonContainer>
-            <ButtonView onPress={() => handleSignIn()}>
+            <ButtonView onPress={() => checkEmptyInputs()} underlayColor="#1C9E9C">
               <TextButton>Login</TextButton>
             </ButtonView>
             
@@ -91,7 +121,7 @@ const SignIn = ({navigation}) => {
           </ButtonContainer>
           
         </Container2>
-      </>
+      </ScrollView>
     </ Container>
   );
 };

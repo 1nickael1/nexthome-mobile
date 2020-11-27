@@ -3,10 +3,11 @@ import {View, Text, ScrollView} from 'react-native';
 import {useIsFocused} from '@react-navigation/native';
 import api from '../../../../services/api';
 import {getToken} from '../../../../services/auth';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import {
   Container, Content, VisitView, 
-  VisitButton, VisitText, VisitButtonText
+  VisitButton, VisitText, VisitButtonText, VisitCancelButton
 } from './styles';
 
 const Visit = () => {
@@ -28,7 +29,7 @@ const Visit = () => {
     <Container>
       <ScrollView>
         <Content>
-          {visits.length > 1 ? (
+          {visits.length > 0 ? (
             visits.map((e) => (
               <VisitView key={e.id}>
                 <VisitText>
@@ -41,6 +42,10 @@ const Visit = () => {
                     : `${new Date(e.day_hour_visit).getMinutes()}0`}
                 </VisitText>
                 
+                <VisitCancelButton>
+                  <Ionicons name="close-circle-outline" size={30} color="#fff" />
+                </VisitCancelButton>
+
                 <VisitButton>
                   <VisitButtonText>{e.house?.address}</VisitButtonText>
                 </VisitButton>
