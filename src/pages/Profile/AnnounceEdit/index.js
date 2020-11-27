@@ -27,7 +27,9 @@ import {
   TextCancelButton,
 } from './styles';
 
-const AnnounceEdit = () => {
+const AnnounceEdit = ({route, navigation}) => {
+  const {house} = route.params;
+
   const [price, setPrice] = useState('');
   const [to_sell, setTo_sell] = useState(true);
   const [address, setAddress] = useState('');
@@ -37,21 +39,33 @@ const AnnounceEdit = () => {
   const [initial_hour, setInitial_hour] = useState('');
   const [final_hour, setFinal_hour] = useState('');
   const [land_size, setLand_size] = useState('');
+  const [idAvailable, setIdAvailable] = useState();
+  const [password, setPassword] = useState('');
 
   useEffect(() => {
-    getHouse();
+    setHouse();
   }, []);
 
-  async function getHouse() {
-    const id = await getToken();
-    const {data} = await api.get(`houses/user/${id}`);
-    console.log(data);
+  function setHouse() {
+    setPrice(house.price.toString());
+    setTo_sell(house.to_sell);
+    setAddress(house.address);
+    setDescription(house.description);
+    setNumber_bath(house.number_bath.toString());
+    setNumber_bedroom(house.number_bedroom.toString());
+    setInitial_hour(house.availables[0].initial_hour.toString());
+    setFinal_hour(house.availables[0].final_hour.toString());
+    setIdAvailable(house.availables[0].id);
+    setLand_size(house.land_size);
   }
 
   async function updateHouse() {
+    if (password.length === 0) {
+      return Alert.alert('Erro', 'Preencha o campo de senha');
+    }
     const token = await getToken();
     api
-      .post(`update/house/${token}`, {
+      .put(`update/house/${token}/${idAvailable}`, {
         land_size,
         price,
         address,
@@ -62,20 +76,25 @@ const AnnounceEdit = () => {
         initial_hour,
         final_hour,
         day_week: 3,
+        password,
       })
       .then((e) =>
         Alert.alert('Sucesso', 'Casa atualizada com sucesso', [
           {text: 'OK', onPress: () => navigation.goBack()},
         ]),
       )
-      .catch((e) => Alert.alert('Ocorreu um erro', `${e}`));
+      .catch((e) =>
+        Alert.alert(
+          'Ocorreu um erro',
+          'Verifique os campos. Sua senha está correta?',
+        ),
+      );
   }
 
   return (
     <Container>
       <ScrollView>
         <Content>
-          
           <TitleView>
             <Title>Foto</Title>
             <WithoutPhotoView>
@@ -100,6 +119,14 @@ const AnnounceEdit = () => {
           </TitleView>
 
           <TitleView>
+            <Title>Metros quadrados</Title>
+            <TextInput
+              value={land_size}
+              onChangeText={(text) => setLand_size(text)}
+            />
+          </TitleView>
+
+          <TitleView>
             <Title>Preço</Title>
             <TextInput
               value={price}
@@ -108,7 +135,7 @@ const AnnounceEdit = () => {
               keyboardType="number-pad"
             />
           </TitleView>
-          
+
           <TitleView>
             <Title>Endereço</Title>
             <TextInput
@@ -122,10 +149,10 @@ const AnnounceEdit = () => {
               placeholder="Descrição"
             />
           </TitleView>
-          
+
           <TitleView>
             <Title>Detalhes</Title>
-            
+
             <DetailsView>
               <DetailsText>Nº de banheiros: </DetailsText>
               <TextInputDetails
@@ -134,8 +161,8 @@ const AnnounceEdit = () => {
                 placeholder="1"
                 keyboardType="number-pad"
               />
-            </ DetailsView>
-            
+            </DetailsView>
+
             <DetailsView>
               <DetailsText>Nº de quartos: </DetailsText>
               <TextInputDetails
@@ -144,9 +171,9 @@ const AnnounceEdit = () => {
                 placeholder="1"
                 keyboardType="number-pad"
               />
-            </ DetailsView>
+            </DetailsView>
           </TitleView>
-          
+
           <TitleView>
             <Title>Horário de Atendimento</Title>
             <HourView>
@@ -159,7 +186,7 @@ const AnnounceEdit = () => {
                 keyboardType="number-pad"
               />
               <HourText>ás</HourText>
-              
+
               <HourInput
                 placeholder="00"
                 maxLength={2}
@@ -170,14 +197,22 @@ const AnnounceEdit = () => {
             </HourView>
           </TitleView>
 
+          <TitleView>
+            <Title>Digite sua senha</Title>
+            <TextInput
+              value={password}
+              onChangeText={(text) => setPassword(text)}
+              secureTextEntry
+            />
+          </TitleView>
+
           <ButtonView onPress={() => updateHouse()}>
             <TextButton>Confirmar</TextButton>
           </ButtonView>
-          
+
           <ButtonCancelView onPress={() => navigation.goBack()}>
             <TextCancelButton>Cancelar</TextCancelButton>
           </ButtonCancelView>
-          
         </Content>
       </ScrollView>
     </Container>

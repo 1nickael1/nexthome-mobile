@@ -1,6 +1,13 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, FlatList, ActivityIndicator, ScrollView} from 'react-native';
+import {
+  View,
+  Text,
+  FlatList,
+  ActivityIndicator,
+  ScrollView,
+} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import {useIsFocused} from '@react-navigation/native';
 import api from '../../services/api';
 import {getToken} from '../../services/auth';
 
@@ -29,10 +36,12 @@ const Profile = ({navigation}) => {
   const [houses, setHouses] = useState({});
   const [loading, setLoading] = useState(true);
 
+  const isFocused = useIsFocused();
+
   useEffect(() => {
     getInfo();
     getHouses();
-  }, []);
+  }, [isFocused]);
 
   async function getInfo() {
     const id = await getToken();
@@ -62,8 +71,8 @@ const Profile = ({navigation}) => {
     });
   }
 
-  function navigateToEditHouse() {
-    navigation.navigate('AnnounceEdit');
+  function navigateToEditHouse(house) {
+    navigation.navigate('AnnounceEdit', {house});
   }
 
   const FlatItemHouse = ({price, address, to_sell, id, item, image}) => (
@@ -73,8 +82,13 @@ const Profile = ({navigation}) => {
         <CardTextPrice>R$ {price}</CardTextPrice>
         <CardText>{address}</CardText>
       </CardTextView>
-      <CardInfoEdit onPress={() => navigateToEditHouse()}>
-        <Ionicons name="pencil-outline" size={40} color="#26d0ce" style={{marginLeft:8}}/>
+      <CardInfoEdit onPress={() => navigateToEditHouse(item)}>
+        <Ionicons
+          name="pencil-outline"
+          size={40}
+          color="#26d0ce"
+          style={{marginLeft: 8}}
+        />
       </CardInfoEdit>
     </CardView>
   );
@@ -93,11 +107,10 @@ const Profile = ({navigation}) => {
   return (
     <Container>
       <ScrollView>
-
         <IconButton onPress={() => navigateToConfig()}>
           <Ionicons name="settings-outline" size={35} color="#26d0ce" />
         </IconButton>
-        
+
         <UserDescriptionBackground>
           <IconBackground>
             <Ionicons name="person-circle" size={130} color="#000" />
@@ -106,21 +119,21 @@ const Profile = ({navigation}) => {
           <UserDescriptionText>{user.email}</UserDescriptionText>
           <UserDescriptionText>{user.cellphone}</UserDescriptionText>
         </UserDescriptionBackground>
-        
+
         <InfoView>
           <LineView>
             <Titles>Favoritos</Titles>
           </LineView>
           <WithoutFav>Você ainda não favoritou</WithoutFav>
-          
+
           <LineView>
             <Titles>Anúncios</Titles>
           </LineView>
-          
+
           {loading ? (
             <View>
               <WithoutFav>Você possui um imóvel parado? Então...</WithoutFav>
-              
+
               <ButtonView onPress={navigateToAnnounce}>
                 <ButtonText>Anuncie!</ButtonText>
               </ButtonView>
@@ -131,14 +144,13 @@ const Profile = ({navigation}) => {
                 <ButtonText>Anuncie mais!</ButtonText>
               </ButtonView>
 
-              <FlatList 
+              <FlatList
                 data={houses}
                 renderItem={flatRenderItem}
-                keyExtractor={(item => item.id.toString())}
+                keyExtractor={(item) => item.id.toString()}
               />
             </View>
           )}
-          
         </InfoView>
       </ScrollView>
     </Container>
