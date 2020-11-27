@@ -28,40 +28,58 @@ import {
 } from './styles';
 
 const Announce = ({navigation}) => {
-  const [price          , setPrice          ] = useState('');
-  const [to_sell        , setTo_sell        ] = useState(true);
-  const [address        , setAddress        ] = useState('');
-  const [description    , setDescription    ] = useState('');
-  const [number_bath    , setNumber_bath    ] = useState('');
-  const [number_bedroom , setNumber_bedroom ] = useState('');
-  const [initial_hour   , setInitial_hour   ] = useState('');
-  const [final_hour     , setFinal_hour     ] = useState('');
-  const [land_size      , setLand_size      ] = useState('');
+  const [price, setPrice] = useState('');
+  const [to_sell, setTo_sell] = useState(true);
+  const [address, setAddress] = useState('');
+  const [description, setDescription] = useState('');
+  const [number_bath, setNumber_bath] = useState('');
+  const [number_bedroom, setNumber_bedroom] = useState('');
+  const [initial_hour, setInitial_hour] = useState('');
+  const [final_hour, setFinal_hour] = useState('');
+  const [land_size, setLand_size] = useState('');
 
-  const [onFocusPrice         , setOnFocusPrice       ] = useState(false);
-  const [onFocusAddress       , setOnFocusAddress     ] = useState(false);
-  const [onFocusDescription   , setOnFocusDescription ] = useState(false);
-  const [onFocusNumberBath    , setOnFocusNBaths      ] = useState(false);
-  const [onFocusNumberBedroom , setOnFocusNBeds       ] = useState(false);
-  const [onFocusInitHour      , setOnFocusInitHour    ] = useState(false);
-  const [onFocusFinHour       , setOnFocusFinHour     ] = useState(false);
+  const [onFocusPrice, setOnFocusPrice] = useState(false);
+  const [onFocusAddress, setOnFocusAddress] = useState(false);
+  const [onFocusDescription, setOnFocusDescription] = useState(false);
+  const [onFocusNumberBath, setOnFocusNBaths] = useState(false);
+  const [onFocusNumberBedroom, setOnFocusNBeds] = useState(false);
+  const [onFocusInitHour, setOnFocusInitHour] = useState(false);
+  const [onFocusFinHour, setOnFocusFinHour] = useState(false);
 
-  const [emptyPrice   , setEmptyPrice   ] = useState(false);
-  const [emptyAddress , setEmptyAddress ] = useState(false);
-  const [emptyNBath   , setEmptyNBaths  ] = useState(false);
-  const [emptyNBedroom, setEmptyNBeds   ] = useState(false);
+  const [emptyPrice, setEmptyPrice] = useState(false);
+  const [emptyAddress, setEmptyAddress] = useState(false);
+  const [emptyNBath, setEmptyNBaths] = useState(false);
+  const [emptyNBedroom, setEmptyNBeds] = useState(false);
   const [emptyInitHour, setEmptyInitHour] = useState(false);
-  const [emptyFinHour , setEmptyFinHour ] = useState(false);
+  const [emptyFinHour, setEmptyFinHour] = useState(false);
 
   function checkEmptyInputs() {
     let one = false;
 
-    if (price.length          == 0) { one = true; setEmptyPrice(true);   }
-    if (address.length        == 0) { one = true; setEmptyAddress(true); }
-    if (number_bath.length    == 0) { one = true; setEmptyNBaths(true);  }
-    if (number_bedroom.length == 0) { one = true; setEmptyNBeds(true);   }
-    if (initial_hour.length   == 0) { one = true; setEmptyInitHour(true);}
-    if (final_hour.length     == 0) { one = true; setEmptyFinHour(true); }
+    if (price.length == 0) {
+      one = true;
+      setEmptyPrice(true);
+    }
+    if (address.length == 0) {
+      one = true;
+      setEmptyAddress(true);
+    }
+    if (number_bath.length == 0) {
+      one = true;
+      setEmptyNBaths(true);
+    }
+    if (number_bedroom.length == 0) {
+      one = true;
+      setEmptyNBeds(true);
+    }
+    if (initial_hour.length == 0) {
+      one = true;
+      setEmptyInitHour(true);
+    }
+    if (final_hour.length == 0) {
+      one = true;
+      setEmptyFinHour(true);
+    }
 
     if (one) return;
     createHouse();
@@ -94,12 +112,11 @@ const Announce = ({navigation}) => {
     <Container>
       <ScrollView>
         <Content>
-          
           <TitleView>
             <Title>Para:</Title>
-            
+
             <View style={{flexDirection: 'row'}}>
-              { to_sell ? (
+              {to_sell ? (
                 <>
                   <ButtonSelected>
                     <ButtonSelectedText>Venda</ButtonSelectedText>
@@ -122,10 +139,22 @@ const Announce = ({navigation}) => {
           </TitleView>
 
           <TitleView>
+            <Title>Metros quadrados</Title>
+            <TextInput
+              value={land_size}
+              onChangeText={(text) => setLand_size(text)}
+              placeholder="Ex: 200m2"
+            />
+          </TitleView>
+
+          <TitleView>
             <Title>Preço</Title>
             <TextInput
               value={price}
-              onChangeText={(text) => {setPrice(text); setEmptyPrice(false);}}
+              onChangeText={(text) => {
+                setPrice(text);
+                setEmptyPrice(false);
+              }}
               placeholder="R$"
               keyboardType="number-pad"
               focus={onFocusPrice}
@@ -134,12 +163,15 @@ const Announce = ({navigation}) => {
               onBlur={() => setOnFocusPrice(false)}
             />
           </TitleView>
-          
+
           <TitleView>
             <Title>Endereço</Title>
             <TextInput
               value={address}
-              onChangeText={(text) => {setAddress(text); setEmptyAddress(false);}}
+              onChangeText={(text) => {
+                setAddress(text);
+                setEmptyAddress(false);
+              }}
               placeholder="Endereço"
               focus={onFocusAddress}
               empty={emptyAddress}
@@ -147,12 +179,15 @@ const Announce = ({navigation}) => {
               onBlur={() => setOnFocusAddress(false)}
             />
           </TitleView>
-          
+
           <TitleView>
             <Title>Descrição do Vendedor</Title>
             <DescriptionInput
               value={description}
-              onChangeText={(text) => {setDescription(text); setEmptyAddress(false);}}
+              onChangeText={(text) => {
+                setDescription(text);
+                setEmptyAddress(false);
+              }}
               placeholder="Descrição"
               multiline={true}
               numberoflines={8}
@@ -161,15 +196,18 @@ const Announce = ({navigation}) => {
               onBlur={() => setOnFocusDescription(false)}
             />
           </TitleView>
-          
+
           <TitleView>
             <Title>Detalhes</Title>
-            
+
             <DetailsView>
               <DetailsText>Nº de banheiros: </DetailsText>
               <TextInputDetails
                 value={number_bath}
-                onChangeText={(text) => {setNumber_bath(text); setEmptyNBaths(false);}}
+                onChangeText={(text) => {
+                  setNumber_bath(text);
+                  setEmptyNBaths(false);
+                }}
                 placeholder="1"
                 keyboardType="number-pad"
                 focus={onFocusNumberBath}
@@ -177,13 +215,16 @@ const Announce = ({navigation}) => {
                 onFocus={() => setOnFocusNBaths(true)}
                 onBlur={() => setOnFocusNBaths(false)}
               />
-            </ DetailsView>
-            
+            </DetailsView>
+
             <DetailsView>
               <DetailsText>Nº de quartos: </DetailsText>
               <TextInputDetails
                 value={number_bedroom}
-                onChangeText={(text) => {setNumber_bedroom(text); setEmptyNBeds(false);}}
+                onChangeText={(text) => {
+                  setNumber_bedroom(text);
+                  setEmptyNBeds(false);
+                }}
                 placeholder="1"
                 keyboardType="number-pad"
                 focus={onFocusNumberBedroom}
@@ -191,9 +232,9 @@ const Announce = ({navigation}) => {
                 onFocus={() => setOnFocusNBeds(true)}
                 onBlur={() => setOnFocusNBeds(false)}
               />
-            </ DetailsView>
+            </DetailsView>
           </TitleView>
-          
+
           <TitleView>
             <Title>Horário de Atendimento</Title>
             <HourView>
@@ -201,7 +242,10 @@ const Announce = ({navigation}) => {
               <HourInput
                 placeholder="00"
                 maxLength={2}
-                onChangeText={(text) => {setInitial_hour(text); setEmptyInitHour(false);}}
+                onChangeText={(text) => {
+                  setInitial_hour(text);
+                  setEmptyInitHour(false);
+                }}
                 value={initial_hour}
                 keyboardType="number-pad"
                 focus={onFocusInitHour}
@@ -210,11 +254,14 @@ const Announce = ({navigation}) => {
                 onBlur={() => setOnFocusInitHour(false)}
               />
               <HourText>ás</HourText>
-              
+
               <HourInput
                 placeholder="00"
                 maxLength={2}
-                onChangeText={(text) => {setFinal_hour(text); setEmptyFinHour(false);}}
+                onChangeText={(text) => {
+                  setFinal_hour(text);
+                  setEmptyFinHour(false);
+                }}
                 value={final_hour}
                 keyboardType="number-pad"
                 focus={onFocusFinHour}
@@ -228,11 +275,10 @@ const Announce = ({navigation}) => {
           <ButtonView onPress={() => checkEmptyInputs()}>
             <TextButton>Confirmar</TextButton>
           </ButtonView>
-          
+
           <ButtonCancelView onPress={() => navigation.goBack()}>
             <TextCancelButton>Cancelar</TextCancelButton>
           </ButtonCancelView>
-          
         </Content>
       </ScrollView>
     </Container>
