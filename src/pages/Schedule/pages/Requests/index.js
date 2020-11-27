@@ -41,7 +41,7 @@ const Requests = ({navigation}) => {
         <Content>
           {loading ? (
             <ActivityIndicator size="large" color="#26d0ce" />
-          ) : visits.length > 1 ? (
+          ) : visits.length > 0 ? (
             visits.map((e) => (
               <VisitView key={e.id}>
                 <VisitButton

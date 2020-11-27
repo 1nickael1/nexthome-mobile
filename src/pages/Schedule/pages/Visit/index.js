@@ -29,7 +29,7 @@ const Visit = () => {
     <Container>
       <ScrollView>
         <Content>
-          {visits.length > 1 ? (
+          {visits.length > 0 ? (
             visits.map((e) => (
               <VisitView key={e.id}>
                 <VisitText>
