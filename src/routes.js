@@ -19,6 +19,7 @@ import SolicitationsDetails from './pages/Schedule/pages/Requests/pages/Solicita
 import Search from './pages/Search';
 import Detail from './pages/Search/pages/Details';
 import Filter from './pages/Search/pages/Filter';
+import FilterResult from './pages/Search/pages/Filter/FilterResult';
 import Scheduling from './pages/Search/pages/scheduling';
 
 const Stack = createStackNavigator();
@@ -34,10 +35,27 @@ const Auth = () => {
 
 const SearchPage = () => {
   return (
-    <Stack.Navigator headerMode="none">
-      <Stack.Screen name="SearchIndex" component={Search} />
-      <Stack.Screen name="DetailIndex" component={DetailsPages} />
-      <Stack.Screen name="Filter" component={Filter} />
+    <Stack.Navigator>
+      <Stack.Screen
+        name="SearchIndex"
+        component={Search}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="DetailIndex"
+        component={DetailsPages}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Filter"
+        component={Filter}
+        options={{headerTitle: 'Filtros'}}
+      />
+      <Stack.Screen
+        name="FilterResult"
+        component={FilterResult}
+        options={{headerTitle: 'Resultados'}}
+      />
     </Stack.Navigator>
   );
 };

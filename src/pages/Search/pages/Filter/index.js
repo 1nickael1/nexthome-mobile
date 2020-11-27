@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import {ScrollView} from 'react-native';
+import {ScrollView, TextInput} from 'react-native';
+import api from '../../../../services/api';
 
 import {
   Container,
@@ -18,61 +19,68 @@ import {
 } from './styles';
 
 const Filter = ({navigation}) => {
-  const [to_sell          , setTo_Sell]           = useState(null);
-  const [toSellSelected   , setToSellSelected]    = useState(1);
-  const [minPrice         , setMinPrice]          = useState(0);
-  const [maxPrince        , setMaxPrice]          = useState(0);
-  const [type             , setType]              = useState(0);
-  const [bedrooms         , setBedrooms]          = useState(0);
-  const [bedroomsSelected , setBedroomsSelected]  = useState(1);
-  const [bathrooms        , setBathrooms]         = useState(0);
+  const [toSellSelected, setToSellSelected] = useState(true);
+  const [minPrice, setMinPrice] = useState('');
+  const [maxPrince, setMaxPrice] = useState('');
+  const [bedroomsSelected, setBedroomsSelected] = useState(1);
   const [bahtroomsSelected, setBathroomsSelected] = useState(1);
 
   function applyFilters() {
-    navigation.goBack();
+    const filterData = {
+      to: toSellSelected,
+      min_price: minPrice > 0 ? parseInt(minPrice, 10) : 0,
+      max_price: maxPrince > 0 ? parseInt(maxPrince, 10) : 0,
+      bed: bedroomsSelected,
+      bath: bahtroomsSelected,
+    };
+
+    navigation.navigate('FilterResult', {filterData});
+
+    // api
+    //   .put('houses', filterData)
+    //   .then((e) => console.log(e.data))
+    //   .catch((e) => console.log(e));
   }
 
   return (
     <ScrollView style={{backgroundColor: '#fff'}}>
-      
       <ConfirmView>
-        <ConfirmButton onPress={() => {applyFilters();}}>
+        <ConfirmButton
+          onPress={() => {
+            applyFilters();
+          }}>
           <ConfirmText>Aplicar filtros</ConfirmText>
         </ConfirmButton>
       </ConfirmView>
-      
+
       <FilterView>
         <Title>Para: </Title>
 
         <ButtonContainer>
-          {toSellSelected === 1 ? (
-            <ButtonSelected>
-              <ButtonSelectedText>Ambos</ButtonSelectedText>
-            </ButtonSelected>
+          {toSellSelected ? (
+            <>
+              <ButtonSelected>
+                <ButtonSelectedText>Venda</ButtonSelectedText>
+              </ButtonSelected>
+              <ButtonView
+                onPress={() => {
+                  setToSellSelected(false);
+                }}>
+                <ButtonText>Aluguel</ButtonText>
+              </ButtonView>
+            </>
           ) : (
-            <ButtonView onPress={() => {setToSellSelected(1);}}>
-              <ButtonText>Ambos</ButtonText>
-            </ButtonView>
-          )}
-
-          {toSellSelected === 2 ? (
-            <ButtonSelected>
-              <ButtonSelectedText>Venda</ButtonSelectedText>
-            </ButtonSelected>
-          ) : (
-            <ButtonView onPress={() => {setToSellSelected(2);}}>
-              <ButtonText>Venda</ButtonText>
-            </ButtonView>
-          )}
-
-          {toSellSelected === 3 ? (
-            <ButtonSelected>
-              <ButtonSelectedText>Aluguel</ButtonSelectedText>
-            </ButtonSelected>
-          ) : (
-            <ButtonView onPress={() => {setToSellSelected(3);}}>
-              <ButtonText>Aluguel</ButtonText>
-            </ButtonView>
+            <>
+              <ButtonView
+                onPress={() => {
+                  setToSellSelected(true);
+                }}>
+                <ButtonText>Venda</ButtonText>
+              </ButtonView>
+              <ButtonSelected>
+                <ButtonSelectedText>Aluguel</ButtonSelectedText>
+              </ButtonSelected>
+            </>
           )}
         </ButtonContainer>
       </FilterView>
@@ -83,12 +91,16 @@ const Filter = ({navigation}) => {
           <PriceInput
             placeholder="Mín."
             keyboardType="numeric"
-            onChange={(text) => setMinPrice(text)}
+            value={minPrice}
+            maxLength={10}
+            onChangeText={(text) => setMinPrice(text)}
           />
           <PriceInput
             placeholder="Máx."
             keyboardType="numeric"
-            onChange={(text) => setMaxPrice(text)}
+            maxLength={10}
+            onChangeText={(text) => setMaxPrice(text)}
+            value={maxPrince}
           />
         </PriceView>
       </FilterView>
@@ -97,13 +109,15 @@ const Filter = ({navigation}) => {
         <Title>Quartos</Title>
 
         <ButtonContainer>
-
           {bedroomsSelected === 1 ? (
             <ButtonSelected>
               <ButtonSelectedText>Qualquer</ButtonSelectedText>
             </ButtonSelected>
           ) : (
-            <ButtonView onPress={() => {setBedroomsSelected(1);}}>
+            <ButtonView
+              onPress={() => {
+                setBedroomsSelected(1);
+              }}>
               <ButtonText>Qualquer</ButtonText>
             </ButtonView>
           )}
@@ -113,7 +127,10 @@ const Filter = ({navigation}) => {
               <ButtonSelectedText>1</ButtonSelectedText>
             </ButtonSelected>
           ) : (
-            <ButtonView onPress={() => {setBedroomsSelected(2);}}>
+            <ButtonView
+              onPress={() => {
+                setBedroomsSelected(2);
+              }}>
               <ButtonText>1</ButtonText>
             </ButtonView>
           )}
@@ -123,7 +140,10 @@ const Filter = ({navigation}) => {
               <ButtonSelectedText>2</ButtonSelectedText>
             </ButtonSelected>
           ) : (
-            <ButtonView onPress={() => {setBedroomsSelected(3);}}>
+            <ButtonView
+              onPress={() => {
+                setBedroomsSelected(3);
+              }}>
               <ButtonText>2</ButtonText>
             </ButtonView>
           )}
@@ -133,11 +153,13 @@ const Filter = ({navigation}) => {
               <ButtonSelectedText>3</ButtonSelectedText>
             </ButtonSelected>
           ) : (
-            <ButtonView onPress={() => {setBedroomsSelected(4);}}>
+            <ButtonView
+              onPress={() => {
+                setBedroomsSelected(4);
+              }}>
               <ButtonText>3</ButtonText>
             </ButtonView>
           )}
-
         </ButtonContainer>
       </FilterView>
 
@@ -150,7 +172,10 @@ const Filter = ({navigation}) => {
               <ButtonSelectedText>Qualquer</ButtonSelectedText>
             </ButtonSelected>
           ) : (
-            <ButtonView onPress={() => {setBathroomsSelected(1);}}>
+            <ButtonView
+              onPress={() => {
+                setBathroomsSelected(1);
+              }}>
               <ButtonText>Qualquer</ButtonText>
             </ButtonView>
           )}
@@ -160,7 +185,10 @@ const Filter = ({navigation}) => {
               <ButtonSelectedText>1</ButtonSelectedText>
             </ButtonSelected>
           ) : (
-            <ButtonView onPress={() => {setBathroomsSelected(2);}}>
+            <ButtonView
+              onPress={() => {
+                setBathroomsSelected(2);
+              }}>
               <ButtonText>1</ButtonText>
             </ButtonView>
           )}
@@ -170,7 +198,10 @@ const Filter = ({navigation}) => {
               <ButtonSelectedText>2</ButtonSelectedText>
             </ButtonSelected>
           ) : (
-            <ButtonView onPress={() => {setBathroomsSelected(3);}}>
+            <ButtonView
+              onPress={() => {
+                setBathroomsSelected(3);
+              }}>
               <ButtonText>2</ButtonText>
             </ButtonView>
           )}
@@ -180,11 +211,13 @@ const Filter = ({navigation}) => {
               <ButtonSelectedText>3</ButtonSelectedText>
             </ButtonSelected>
           ) : (
-            <ButtonView onPress={() => {setBathroomsSelected(4);}}>
+            <ButtonView
+              onPress={() => {
+                setBathroomsSelected(4);
+              }}>
               <ButtonText>3</ButtonText>
             </ButtonView>
           )}
-          
         </ButtonContainer>
       </FilterView>
     </ScrollView>
