@@ -5,6 +5,7 @@ import api from '../../../../services/api';
 
 import {
   Container1,
+  ImageView,
   PhotoView,
   Container2,
   ContentView,
@@ -60,7 +61,7 @@ const Details = ({route, navigation}) => {
       <ScrollView style={{backgroundColor: '#FFF'}}>
         <Container1 />
         {image !== undefined ? (
-          <Image
+          <ImageView
             source={{uri: `${image.url}`}}
             style={{height: 200, width: '100%'}}
             resizeMode={'contain'}
@@ -136,7 +137,7 @@ const Details = ({route, navigation}) => {
                 </MoreDetails>
                 {hour ? (
                   <>
-                    <ButtonView onPress={() => goToScheduling()}>
+                    <ButtonView onPress={() => goToScheduling()} underlayColor='#1C9E9C'>
                       <ButtonText>Agendar Visita</ButtonText>
                     </ButtonView>
                   </>

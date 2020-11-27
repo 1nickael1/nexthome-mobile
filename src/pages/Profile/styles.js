@@ -64,6 +64,53 @@ export const IconButton = styled.TouchableOpacity`
   margin-top  : ${wp(5)}px;
 `;
 
+export const CardView = styled.View`
+  flex-direction: row;
+  width         : ${wp(90)}px;
+  height        : ${hp(15)}px;
+  margin-top    : ${hp(3)}px;
+  border-radius : ${wp(2)}px;
+  border-width  : ${wp(0.1)}px;
+  border-color  : #ddd;
+`;
+
+export const CardPhotoView = styled.View`
+  flex: 2;
+  background-color          : #000;
+  border-top-left-radius    : ${wp(2)}px;
+  border-top-right-radius   : ${wp(2)}px;
+  border-bottom-left-radius : ${wp(2)}px;
+`;
+
+export const CardTextView = styled.View`
+  flex        : 3;
+  padding-top : ${hp(1)}px;
+  padding-left: ${wp(2)}px;
+`;
+
+export const CardTextPrice = styled.Text`
+  font-size     : ${wp(3)}px;
+  padding-bottom: ${hp(.5)}px;
+  font-family   : 'Nunito-Bold';
+`;
+
+export const CardText = styled.Text`
+  font-size     : ${wp(3)}px;
+  padding-bottom: ${hp(.5)}px;
+  font-family   : 'Nunito-Regular';
+`;
+
+export const CardInfoEdit = styled.TouchableOpacity`
+  flex                      : 1;
+  align-self                : flex-end;
+  height                    : ${hp(7)}px;
+  border-color              : #26d0ce;
+  border-width              : ${hp(.2)}px;
+  border-top-left-radius    : ${wp(2)}px;
+  border-bottom-right-radius: ${wp(2)}px;
+  justify-content           : center;
+`;
+
 export const ButtonView = styled.TouchableOpacity`
   background-color: #fff;
   width           : ${wp(60)}px;

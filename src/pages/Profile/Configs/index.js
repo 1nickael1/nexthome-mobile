@@ -1,5 +1,4 @@
 import React from 'react';
-import {View} from 'react-native';
 import {logout} from '../../../services/auth';
 
 import {Container, ButtonView, ButtonText} from './styles';
@@ -9,10 +8,15 @@ const Configs = ({navigation}) => {
     await logout();
     navigation.navigate('SignIn');
   }
+
   return (
     <Container>
       <ButtonView onPress={() => Logout()}>
         <ButtonText>Logout</ButtonText>
+      </ButtonView>
+
+      <ButtonView>
+        <ButtonText>Deletar conta</ButtonText>
       </ButtonView>
     </Container>
   );

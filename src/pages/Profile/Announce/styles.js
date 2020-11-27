@@ -31,15 +31,57 @@ export const Title = styled.Text`
   font-family   : 'Nunito-SemiBold';
 `;
 
-export const TextInput = styled.TextInput.attrs({
-  placeholderTextColor: '#818181',
-})`
+export const ButtonSelected = styled.TouchableOpacity`
+  flex            : 1.2;
+  height          : ${hp(5)}px;
+  background-color: #26d0ce;
+  border-radius   : ${wp(50)}px;
+  justify-content : center;
+  align-items     : center;
+`;
+
+export const ButtonSelectedText = styled.Text`
+  font-size   : ${wp(3.7)}px;
+  color       : #fff;
+  font-family : 'Nunito-Regular';
+`;
+
+export const ButtonNotSelectedView = styled.TouchableOpacity`
+  flex            : 1;
+  height          : ${hp(5)}px;
+  background-color: #fff;
+  justify-content : center;
+  align-items     : center;
+`;
+
+export const ButtonNotSelectedText = styled.Text`
+  font-size   : ${wp(3.5)}px;
+  color       : #818181;
+  font-family : 'Nunito-Regular';
+`;
+
+export const TextInput = styled.TextInput.attrs(props => ({
+  placeholderTextColor: props.empty ? '#FF6767' : props.focus ? '#1C9E9C' : '#666',
+}))`
   width               : ${wp(90)}px;
   margin-top          : ${hp(2)}px;
   border-bottom-width : ${hp(0.1)}px;
-  border-bottom-color : #d3d3d3;
+  border-bottom-color : ${props => props.empty ? '#FF6767' : props.focus ? '#1C9E9C' : '#666'};
   font-size           : ${wp(3.8)}px;
   font-family         : 'Nunito-Regular';
+`;
+
+export const DescriptionInput = styled.TextInput.attrs(props => ({
+  placeholderTextColor: props.empty ? '#FF6767' : props.focus ? '#1C9E9C' : '#666',
+}))`
+  height       : ${hp(30)}px;
+  width        : ${wp(90)}px;
+  margin-top   : ${hp(2)}px;
+  border-width : ${hp(0.1)}px;
+  border-color : ${props => props.empty ? '#FF6767' : props.focus ? '#1C9E9C' : '#666'};
+  border-radius: ${wp(2.5)}px;
+  font-size    : ${wp(3.8)}px;
+  font-family  : 'Nunito-Regular';
 `;
 
 export const DetailsView = styled.View`
@@ -53,12 +95,12 @@ export const DetailsText = styled.Text`
   font-family : 'Nunito-Regular';
 `;
 
-export const TextInputDetails = styled.TextInput.attrs({
-  placeholderTextColor: '#818181',
-})`
+export const TextInputDetails = styled.TextInput.attrs(props => ({
+  placeholderTextColor: props.empty ? '#FF6767' : props.focus ? '#1C9E9C' : '#666',
+}))`
   width               : ${wp(20)}px;
   border-bottom-width : ${hp(0.1)}px;
-  border-bottom-color : #d3d3d3;
+  border-bottom-color : ${props => props.empty ? '#FF6767' : props.focus ? '#1C9E9C' : '#666'};
   font-size           : ${wp(3.8)}px;
   font-family         : 'Nunito-Regular';
 `;
@@ -75,11 +117,11 @@ export const HourText = styled.Text`
   font-family : 'Nunito-Regular';
 `;
 
-export const HourInput = styled.TextInput.attrs({
-  placeholderTextColor: '#818181',
-})`
+export const HourInput = styled.TextInput.attrs(props => ({
+  placeholderTextColor: props.empty ? '#FF6767' : props.focus ? '#1C9E9C' : '#666',
+}))`
   width               : ${wp(20)}px;
-  border-bottom-color : #d3d3d3;
+  border-bottom-color : ${props => props.empty ? '#FF6767' : props.focus ? '#1C9E9C' : '#666'};
   border-bottom-width : ${hp(0.1)}px;
   align-self          : center;
   text-align          : center;
